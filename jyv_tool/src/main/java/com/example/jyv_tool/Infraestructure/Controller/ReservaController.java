@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.jyv_tool.Domain.Dto.ReserveRequest;
-import com.example.jyv_tool.Domain.Dto.ResponseReserve;
 
+import com.example.jyv_tool.Domain.Dto.Reserva.ReserveRequest;
+import com.example.jyv_tool.Domain.Dto.Reserva.ResponseReserve;
 import com.example.jyv_tool.Application.Service.ReservaService;
 import com.example.jyv_tool.Domain.Entity.Reserva;
 
 @RestController
-@RequestMapping(value="/api" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class ReservaController {
 
     private final ReservaService reservaservice;
@@ -34,7 +34,7 @@ public class ReservaController {
         List<Reserva> ReserveResult= reservaservice.findAllReserve();
         return ReserveResult;
     }
-     @DeleteMapping("/reserve/{id}")
+    @DeleteMapping("/reserve/{id}")
     public ResponseEntity<?> DeleteUser(@PathVariable Long id){
 
         boolean deleteuser= reservaservice.deleteReserve(id);
@@ -53,7 +53,7 @@ public class ReservaController {
     }
 
     @PatchMapping("/reserve/{id}")
-    public ResponseEntity<ResponseReserve> UpdateUsuario(@PathVariable Long id,@RequestBody ReserveRequest Reserve ){
+    public ResponseEntity<ResponseReserve> UpdateReserve(@PathVariable Long id,@RequestBody ReserveRequest Reserve ){
 
         return ResponseEntity.ok().body(reservaservice.UpdateReserve(id,Reserve));
     }

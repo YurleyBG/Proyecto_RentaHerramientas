@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.ReservaService;
-import com.example.jyv_tool.Domain.Dto.ReserveRequest;
-import com.example.jyv_tool.Domain.Dto.ResponseReserve;
+import com.example.jyv_tool.Domain.Dto.Reserva.ReserveRequest;
+import com.example.jyv_tool.Domain.Dto.Reserva.ResponseReserve;
 import com.example.jyv_tool.Domain.Entity.Reserva;
 import com.example.jyv_tool.Infraestructure.Repository.Reserva.RepositoryReserva;
 import com.example.jyv_tool.Infraestructure.util.Exception.UsuariosDuplicationException;

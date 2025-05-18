@@ -12,7 +12,7 @@ import java.util.List;
 import org.springframework.http.MediaType;
 
 @RestController
-@RequestMapping(value="/api" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class EntidadesGetController {
 
     private final EntidadesListarService entidadesGetService;

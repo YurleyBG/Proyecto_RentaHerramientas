@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jyv_tool.Application.Service.UsuarioService;
-import com.example.jyv_tool.Domain.Dto.ResponseUsuario;
-import com.example.jyv_tool.Domain.Dto.UsuarioRequest;
+import com.example.jyv_tool.Domain.Dto.Usuario.ResponseUsuario;
+import com.example.jyv_tool.Domain.Dto.Usuario.UsuarioRequest;
 import com.example.jyv_tool.Domain.Entity.Usuario;
 
 @RestController
-@RequestMapping(value="/api" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioController {
 
     private final UsuarioService usuarioservicio;

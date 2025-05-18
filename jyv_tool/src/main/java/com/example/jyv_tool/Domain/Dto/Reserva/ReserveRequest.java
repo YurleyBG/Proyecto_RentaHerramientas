@@ -1,4 +1,4 @@
-package com.example.jyv_tool.Domain.Dto;
+package com.example.jyv_tool.Domain.Dto.Reserva;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -7,8 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public class ResponseReserve {
-
+public class ReserveRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,10 +15,10 @@ public class ResponseReserve {
     private BigDecimal costo_total;
     private int cantidad;
 
-    public ResponseReserve() {
+    public ReserveRequest() {
     }
 
-    public ResponseReserve(int cantidad, BigDecimal costo_total, Timestamp fecha_fin, Timestamp fecha_inicio, Long id) {
+    public ReserveRequest(int cantidad, BigDecimal costo_total, Timestamp fecha_fin, Timestamp fecha_inicio, Long id) {
         this.cantidad = cantidad;
         this.costo_total = costo_total;
         this.fecha_fin = fecha_fin;

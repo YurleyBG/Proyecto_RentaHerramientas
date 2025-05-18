@@ -1,4 +1,4 @@
-package com.example.jyv_tool.Domain.Dto;
+package com.example.jyv_tool.Domain.Dto.Usuario;
 
 import java.sql.Timestamp;
 
@@ -6,9 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-public class UsuarioRequest {
-
-    @Id
+public class ResponseUsuario {
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre1;
@@ -21,10 +20,10 @@ public class UsuarioRequest {
     private String contraseña;
     private Long id_rol;
 
-    public UsuarioRequest() {
+    public ResponseUsuario() {
     }
 
-    public UsuarioRequest(Timestamp Fecha_Registro, String Usuario, String apellido1, String apellido2, String contraseña, String correo, String direccion, Long id, Long id_rol, String nombre1, String nombre2, String telefono) {
+    public ResponseUsuario(Timestamp Fecha_Registro, String Usuario, String apellido1, String apellido2, String contraseña, String correo, String direccion, Long id, Long id_rol, String nombre1, String nombre2, String telefono) {
         this.Fecha_Registro = Fecha_Registro;
         this.Usuario = Usuario;
         this.apellido1 = apellido1;
@@ -134,6 +133,9 @@ public class UsuarioRequest {
     public void setId_rol(Long id_rol) {
         this.id_rol = id_rol;
     }
+
+
+
 
 
 }

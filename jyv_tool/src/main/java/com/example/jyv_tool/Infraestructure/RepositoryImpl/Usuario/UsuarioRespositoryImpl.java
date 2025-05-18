@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.UsuarioService;
-import com.example.jyv_tool.Domain.Dto.ResponseUsuario;
-import com.example.jyv_tool.Domain.Dto.UsuarioRequest;
+import com.example.jyv_tool.Domain.Dto.Usuario.ResponseUsuario;
+import com.example.jyv_tool.Domain.Dto.Usuario.UsuarioRequest;
 import com.example.jyv_tool.Domain.Entity.Rol;
 import com.example.jyv_tool.Domain.Entity.Usuario;
 import com.example.jyv_tool.Infraestructure.Repository.Rol.RolRepository;
