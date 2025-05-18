@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Entrega;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.EntregaService;
@@ -15,9 +16,10 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class EntregarRepositoryImpl implements EntregaService {
 
+    
     private final EntregaRepository entregaRepository;
 
-    public EntregarRepositoryImpl(EntregaRepository entregaRepository) {
+    public EntregarRepositoryImpl(@Lazy EntregaRepository entregaRepository) {
         this.entregaRepository = entregaRepository;
     }
 

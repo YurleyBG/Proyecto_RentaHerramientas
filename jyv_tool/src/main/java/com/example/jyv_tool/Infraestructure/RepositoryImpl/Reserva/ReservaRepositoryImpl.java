@@ -3,6 +3,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Reserva;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,10 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ReservaRepositoryImpl implements ReservaService{
 
+    
     private final RepositoryReserva repositoryreserva;
 
-    public ReservaRepositoryImpl(RepositoryReserva repositoryreserva) {
+    public ReservaRepositoryImpl(@Lazy RepositoryReserva repositoryreserva) {
         this.repositoryreserva = repositoryreserva;
     }
 

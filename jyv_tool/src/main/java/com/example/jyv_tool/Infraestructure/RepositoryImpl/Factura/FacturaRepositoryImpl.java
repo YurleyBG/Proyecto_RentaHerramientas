@@ -3,6 +3,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Factura;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.FacturaService;
@@ -12,9 +13,10 @@ import com.example.jyv_tool.Infraestructure.Repository.Factura.FacturaRepository
 @Service
 public class FacturaRepositoryImpl implements FacturaService {
 
+    
     private final FacturaRepository facturaRepository;
 
-    public FacturaRepositoryImpl(FacturaRepository facturaRepository) {
+    public FacturaRepositoryImpl(@Lazy FacturaRepository facturaRepository) {
         this.facturaRepository = facturaRepository;
     }
 

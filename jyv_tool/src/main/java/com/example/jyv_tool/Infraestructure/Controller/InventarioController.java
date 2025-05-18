@@ -15,6 +15,7 @@ import com.example.jyv_tool.Domain.Entity.Inventario;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class InventarioController {
 
+    
     private final InventarioService inventarioService;
 
-    public InventarioController(InventarioService inventarioService) {
+    public InventarioController(@Lazy InventarioService inventarioService) {
         this.inventarioService = inventarioService;
     }
 

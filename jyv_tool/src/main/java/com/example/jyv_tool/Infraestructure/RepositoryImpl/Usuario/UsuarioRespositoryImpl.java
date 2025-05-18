@@ -3,6 +3,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Usuario;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,12 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class UsuarioRespositoryImpl implements UsuarioService {
 
+  
+    
     private final UsuarioRepository usuarioRepository;
     private final RolRepository rolrepository;
     
-    public UsuarioRespositoryImpl(UsuarioRepository usuarioRepository,RolRepository rolrepository) {
+    public UsuarioRespositoryImpl( @Lazy UsuarioRepository usuarioRepository, @Lazy RolRepository rolrepository) {
         this.usuarioRepository = usuarioRepository;
         this.rolrepository= rolrepository;
     }

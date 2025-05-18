@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Inventario;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.InventarioService;
@@ -15,9 +16,10 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class InventarioRepositoryImpl implements  InventarioService{
 
+
     private final InventarioRepository inventarioRepository;
 
-    public InventarioRepositoryImpl(InventarioRepository inventarioRepository) {
+    public InventarioRepositoryImpl( @Lazy InventarioRepository inventarioRepository) {
         this.inventarioRepository = inventarioRepository;
     }
 

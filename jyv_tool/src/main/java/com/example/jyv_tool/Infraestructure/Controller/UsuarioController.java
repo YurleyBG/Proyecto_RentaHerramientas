@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.Controller;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ import com.example.jyv_tool.Domain.Entity.Usuario;
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioController {
 
+   
     private final UsuarioService usuarioservicio;
 
-    public UsuarioController(UsuarioService usuarioservicio) {
+    public UsuarioController(@Lazy UsuarioService usuarioservicio) {
         this.usuarioservicio = usuarioservicio;
     }
 

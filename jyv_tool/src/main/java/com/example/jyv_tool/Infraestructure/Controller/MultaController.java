@@ -15,6 +15,7 @@ import com.example.jyv_tool.Domain.Entity.Multas;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class MultaController {
 
+    
     private final MultaService multaService;
 
-    public MultaController(MultaService multaService) {
+    public MultaController( @Lazy MultaService multaService) {
         this.multaService = multaService;
     }
 

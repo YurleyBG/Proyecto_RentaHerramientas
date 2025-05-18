@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Multa;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.MultaService;
@@ -18,7 +19,7 @@ public class MultaRepositoryImpl implements MultaService {
    
     private final MultaRepository multaRepository;
 
-    public MultaRepositoryImpl(MultaRepository multaRepository) {
+    public MultaRepositoryImpl(@Lazy MultaRepository multaRepository) {
         this.multaRepository = multaRepository;
     }
 

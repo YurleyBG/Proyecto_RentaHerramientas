@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.EntidadesListar;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.EntidadesListarService;
@@ -32,6 +33,7 @@ import com.example.jyv_tool.Infraestructure.Repository.Localidad.LocalidadReposi
 @Service
 public class EntidadesListarRepositoryImpl implements EntidadesListarService{
 
+  
     private final RolRepository rolrepository;
     private final CategoriaRepository categoriarepository;
     private final DetalleFacturaRepository detalleFacturaReporitory;
@@ -47,14 +49,18 @@ public class EntidadesListarRepositoryImpl implements EntidadesListarService{
     
     
 
-    public EntidadesListarRepositoryImpl(RolRepository rolrepository, CategoriaRepository categoriarepository,
-            DetalleFacturaRepository detalleFacturaReporitory,
-            DetalleHerramientaRepository detalleHerramientaRepository,
-            DetalleProveedorRepository detalleProveedorRepository, EstadoRepository estadoRepository,
-            FormaPagoRepository formaPagoRepository,
-            HerramientaMantenimientoRepository herramientaMantenimientoRepository,
-            LocalidadRepository localidadrepository, NotificacionesRepository notificacionesRepository,
-            ReporteGeneralRepository reporteGeneralrepository) {
+    public EntidadesListarRepositoryImpl(@Lazy RolRepository rolrepository, 
+            @Lazy CategoriaRepository categoriarepository,
+            @Lazy DetalleFacturaRepository detalleFacturaReporitory,
+            @Lazy DetalleHerramientaRepository detalleHerramientaRepository,
+            @Lazy DetalleProveedorRepository detalleProveedorRepository, 
+            @Lazy EstadoRepository estadoRepository,
+            @Lazy FormaPagoRepository formaPagoRepository,
+            @Lazy HerramientaMantenimientoRepository herramientaMantenimientoRepository,
+            @Lazy LocalidadRepository localidadrepository, 
+            @Lazy NotificacionesRepository notificacionesRepository,
+            @Lazy ReporteGeneralRepository reporteGeneralrepository
+    ) {
         this.rolrepository = rolrepository;
         this.categoriarepository = categoriarepository;
         this.detalleFacturaReporitory = detalleFacturaReporitory;

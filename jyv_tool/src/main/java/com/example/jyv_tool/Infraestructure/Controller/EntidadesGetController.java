@@ -9,15 +9,17 @@ import com.example.jyv_tool.Domain.Entity.Categoria;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class EntidadesGetController {
 
+    
     private final EntidadesListarService entidadesGetService;
 
-    public EntidadesGetController(EntidadesListarService entidadesGetService) {
+    public EntidadesGetController(@Lazy EntidadesListarService entidadesGetService) {
         this.entidadesGetService = entidadesGetService;
     }
 

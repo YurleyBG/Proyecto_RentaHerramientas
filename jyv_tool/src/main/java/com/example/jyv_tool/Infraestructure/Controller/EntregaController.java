@@ -11,6 +11,7 @@ import com.example.jyv_tool.Application.Service.EntregaService;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +23,11 @@ import com.example.jyv_tool.Domain.Entity.Entrega;
 @RestController
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class EntregaController {
+
+    
     private final EntregaService entregaService;
 
-    public EntregaController(EntregaService entregaService) {
+    public EntregaController(@Lazy EntregaService entregaService) {
         this.entregaService = entregaService;
     }
 

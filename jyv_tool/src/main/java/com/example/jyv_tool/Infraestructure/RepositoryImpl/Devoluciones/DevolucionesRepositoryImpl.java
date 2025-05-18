@@ -3,6 +3,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Devoluciones;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.DevolucionesService;
@@ -18,7 +19,7 @@ public class DevolucionesRepositoryImpl implements  DevolucionesService {
 
     private final DevolucionesRepository devolucionesRepository;
 
-    public DevolucionesRepositoryImpl(DevolucionesRepository devolucionesRepository) {
+    public DevolucionesRepositoryImpl(@Lazy DevolucionesRepository devolucionesRepository) {
         this.devolucionesRepository = devolucionesRepository;
     }
 

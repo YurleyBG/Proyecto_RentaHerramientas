@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.Controller;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,10 @@ import com.example.jyv_tool.Domain.Entity.Alquiler;
 @RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class AlquilerController {
 
+    
     private final AlquilerService alquilerService;
 
-    public AlquilerController(AlquilerService alquilerService) {
+    public AlquilerController(@Lazy AlquilerService alquilerService) {
         this.alquilerService = alquilerService;
     }
 

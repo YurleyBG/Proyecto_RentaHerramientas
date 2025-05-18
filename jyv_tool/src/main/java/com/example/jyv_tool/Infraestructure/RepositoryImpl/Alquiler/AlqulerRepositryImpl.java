@@ -3,6 +3,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Alquiler;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.AlquilerService;
@@ -16,9 +17,10 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class AlqulerRepositryImpl implements  AlquilerService{
 
+    
     private final AlquilerRepository alquilerRepository;
 
-    public AlqulerRepositryImpl(AlquilerRepository alquilerRepository) {
+    public AlqulerRepositryImpl(@Lazy AlquilerRepository alquilerRepository) {
         this.alquilerRepository = alquilerRepository;
     }
 

@@ -2,6 +2,7 @@ package com.example.jyv_tool.Infraestructure.RepositoryImpl.Pago;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.example.jyv_tool.Application.Service.PagoService;
@@ -15,9 +16,10 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PagoRepositoryImpl  implements  PagoService{
 
-   private final PagoRepository pagoRepository;
+   
+    private final PagoRepository pagoRepository;
 
-    public PagoRepositoryImpl(PagoRepository pagoRepository) {
+    public PagoRepositoryImpl(@Lazy PagoRepository pagoRepository) {
         this.pagoRepository = pagoRepository;
     }
 
