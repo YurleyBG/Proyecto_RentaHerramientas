@@ -13,50 +13,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.jyv_tool.Domain.Dto.ReserveRequest;
+import com.example.jyv_tool.Domain.Dto.ResponseReserve;
 
-import com.example.jyv_tool.Application.Service.UsuarioService;
-import com.example.jyv_tool.Domain.Dto.ResponseUsuario;
-import com.example.jyv_tool.Domain.Dto.UsuarioRequest;
-import com.example.jyv_tool.Domain.Entity.Usuario;
+import com.example.jyv_tool.Application.Service.ReservaService;
+import com.example.jyv_tool.Domain.Entity.Reserva;
 
 @RestController
 @RequestMapping(value="/api" ,produces = MediaType.APPLICATION_JSON_VALUE)
-public class UsuarioController {
+public class ReservaController {
 
-    private final UsuarioService usuarioservicio;
+    private final ReservaService reservaservice;
 
-    public UsuarioController(UsuarioService usuarioservicio) {
-        this.usuarioservicio = usuarioservicio;
+    public ReservaController(ReservaService reservaservice) {
+        this.reservaservice = reservaservice;
     }
 
-    @GetMapping("/usuario")
-    public List<Usuario> findAll() {
-        List<Usuario> userResult= usuarioservicio.findAllUsers();
-        return userResult;
+    @GetMapping("/reserva")
+    public List<Reserva> findAll() {
+        List<Reserva> ReserveResult= reservaservice.findAllReserve();
+        return ReserveResult;
     }
-
-    @DeleteMapping("/usuario/{id}")
+     @DeleteMapping("/reserve/{id}")
     public ResponseEntity<?> DeleteUser(@PathVariable Long id){
 
-        boolean deleteuser= usuarioservicio.deleteUser(id);
+        boolean deleteuser= reservaservice.deleteReserve(id);
         if (deleteuser) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
-    @PostMapping("/usuario")
-    public ResponseEntity<ResponseUsuario> createNewUsuario(@RequestBody UsuarioRequest newUser) {
+    @PostMapping("/reserve")
+    public ResponseEntity<ResponseReserve> createNewReserve(@RequestBody ReserveRequest newReserve) {
         return new ResponseEntity<>(
-            usuarioservicio.createNewUsuario(newUser),
+            reservaservice.createNewReserve(newReserve),
             HttpStatus.valueOf(200)
         );
     }
 
-    @PatchMapping("/usuario/{id}")
-    public ResponseEntity<ResponseUsuario> UpdateUsuario(@PathVariable Long id,@RequestBody UsuarioRequest users ){
-        return ResponseEntity.ok().body(usuarioservicio.UpdateUsuario(id,users));
+    @PatchMapping("/reserve/{id}")
+    public ResponseEntity<ResponseReserve> UpdateUsuario(@PathVariable Long id,@RequestBody ReserveRequest Reserve ){
+
+        return ResponseEntity.ok().body(reservaservice.UpdateReserve(id,Reserve));
     }
+
+
     
+
 
 }
