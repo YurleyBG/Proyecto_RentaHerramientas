@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #121212;
+}
+
+/* NAVBAR */
+.barra_navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ec6c1a;
+  padding: 10px 20px;
+  
+}
+
+.logo-navbar {
+  height: 50px;
+}
+
+.navegacion-links{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  width: 65vw;
+}
+
+.navegacion-links a {
+  color: rgb(255, 255, 255);
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+ 
+  
+}
+
+.navegacion-links a i {
+  margin-right: 5px;
+}
+
+.navegacion-links a.active {
+  border-bottom: 2px solid white;
+}
+
+.user-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+/* CONTENIDO */
+.contenido {
+  padding: 30px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.resumen {
+  border: 1px solid #ec6c1a;
+  padding: 20px;
+  margin: 0 auto 30px auto;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}
+
+.reserva {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  text-align: left;
+}
+
+.reserva p {
+  font-size: 14px;
+}
+
+.pago-final {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.botones {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.btn {
+  background-color: #ec6c1a;
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 250px;
+}
+
+.btn:hover {
+  background-color: #d75a0e;
+}
+.reserva label {
+  display: block;
+  font-size: 14px;
+}
+
+.reserva input[type="date"],
+.reserva input[type="number"] {
+  padding: 5px;
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.reserva label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.reserva input, .pago-final select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.pago-final {
+  margin-top: 20px;
+}
+/* ////////////////////////// */
+
+.facturas-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.facturas-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.factura {
+  background-color: #f2f2f2;
+  border: 2px solid #e67319;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.factura p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.descargar-btn {
+  background-color: #e67319;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.descargar-btn:hover {
+  background-color: #cf5f10;
+}

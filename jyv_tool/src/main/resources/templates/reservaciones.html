@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservaciones</title>
+  <link rel="stylesheet" href="style_reservaciones.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="barra_navegacion">
+    <div class="logo-container">
+      <img src="img/logo_JYV_TOOLS.png" alt="Logo" class="logo-navbar">
+    </div>
+    <nav class="navegacion-links">
+      <a href="#"><i class="fas fa-wrench"></i> Herramientas</a>
+      <a href="#" class="active"><i class="fas fa-calendar-check"></i> Reservaciones</a>
+      <a href="#"><i class="fas fa-money-bill-wave"></i> Pagos</a>
+      <a href="#"><i class="fas fa-clipboard-list"></i> Historial</a>
+      <a href="#"><i class="fas fa-file-invoice"></i> Facturas</a>
+    </nav>
+    <div class="user-icons">
+      <i class="fas fa-bell"></i>
+      <img src="img/icono_usuario.png" alt="Usuario" class="avatar">
+    </div>
+  </header>
+
+  <main class="contenido">
+    <h1>Reservaciones</h1>
+    <div class="resumen">
+      <div class="reserva">
+        <p><strong>Herramienta 1</strong><br> Pala</p>
+
+        <label><strong>Fecha Inicio</strong><br>
+          <input type="date" value="2025-05-13">
+        </label>
+
+        <label><strong>Fecha Devolución</strong><br>
+          <input type="date" value="">
+        </label>
+
+        <label><strong>Cantidad</strong><br>
+          <input type="number" class="cantidad" value="0" min="1">
+        </label>
+
+        <label><strong>Días</strong><br>
+          <input type="number" class="dias" value="0" min="1">
+        </label>
+
+        <label><strong>Precio Día</strong><br>
+          <input type="number" class="precio-dia" value="6000" min="0">
+        </label>
+
+        <p><strong>Precio Total</strong><br>
+          $ <span class="precio-total">0</span>
+        </p>
+      </div>
+
+      <div class="reserva">
+        <p><strong>Herramienta 2</strong><br> Pica</p>
+
+        <label><strong>Fecha Inicio</strong><br>
+          <input type="date" value="2025-05-13">
+        </label>
+
+        <label><strong>Fecha Devolución</strong><br>
+          <input type="date" value="">
+        </label>
+
+        <label><strong>Cantidad</strong><br>
+          <input type="number" class="cantidad" value="0" min="1">
+        </label>
+
+        <label><strong>Días</strong><br>
+          <input type="number" class="dias" value="0" min="1">
+        </label>
+
+        <label><strong>Precio Día</strong><br>
+          <input type="number" class="precio-dia" value="5000" min="0">
+        </label>
+
+        <p><strong>Precio Total</strong><br>
+          $ <span class="precio-total">0</span>
+        </p>
+      </div>
+
+      <div class="pago-final">
+        <label><strong>Forma de Pago</strong><br>
+          <select id="forma-pago">
+            <option value="tarjeta">Tarjeta de crédito</option>
+            <option value="pse">PSE</option>
+          </select>
+        </label>
+
+        <p><strong>Total Pagar</strong><br>
+          $ <span id="total-pagar">0</span>
+        </p>
+      </div>
+    </div>
+
+
+    <div class="botones">
+      <button class="btn btn-pagar">Ir a pagar <a href="index5_pagos.html"></a></button>
+      <button class="btn btn-descargar">Descargar Factura</button>
+    </div>
+
+    <div class="facturas-container">
+    <h2>Facturas</h2>
+
+    <div class="factura">
+      <p><strong>Factura #001</strong></p>
+      <p><strong>Fecha:</strong> 16-05-2025</p>
+      <p><strong>Herramientas:</strong> Pala (x2), Pica (x2)</p>
+      <p><strong>Total:</strong> $124.000</p>
+      <button class="descargar-btn">Descargar PDF</button>
+    </div>
+
+    <div class="factura">
+      <p><strong>Factura #002</strong></p>
+      <p><strong>Fecha:</strong> 02-05-2025</p>
+      <p><strong>Herramientas:</strong> Taladro (x1)</p>
+      <p><strong>Total:</strong> $35.000</p>
+      <button class="descargar-btn">Descargar PDF</button>
+    </div>
+
+    <div class="factura">
+      <p><strong>Factura #003</strong></p>
+      <p><strong>Fecha:</strong> 20-04-2025</p>
+      <p><strong>Herramientas:</strong> Martillo (x3)</p>
+      <p><strong>Total:</strong> $18.000</p>
+      <button class="descargar-btn">Descargar PDF</button>
+    </div>
+  </main>
+
+  <script>
+    function actualizarTotales() {
+      const reservas = document.querySelectorAll('.reserva');
+      let totalPagar = 0;
+
+      reservas.forEach(reserva => {
+        const cantidad = parseInt(reserva.querySelector('.cantidad').value) || 0;
+        const dias = parseInt(reserva.querySelector('.dias').value) || 0;
+        const precioDia = parseInt(reserva.querySelector('.precio-dia').value) || 0;
+
+        const total = cantidad * dias * precioDia;
+        reserva.querySelector('.precio-total').innerText = total.toLocaleString();
+        totalPagar += total;
+      });
+
+      document.getElementById('total-pagar').innerText = totalPagar.toLocaleString();
+    }
+
+    document.querySelectorAll('.cantidad, .dias, .precio-dia').forEach(input => {
+      input.addEventListener('input', actualizarTotales);
+    });
+
+    actualizarTotales(); // ejecutar al cargar
+  </script>
+
+
+</body>
+
+</html>

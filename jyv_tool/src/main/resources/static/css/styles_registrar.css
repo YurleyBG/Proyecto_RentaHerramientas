@@ -1,0 +1,125 @@
+
+* {
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #121212;
+}
+
+
+.caja_naranja {
+    background-color: #ED7D31;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 20px;
+}
+.casco{
+    position: relative;
+    width: 32vw;
+    margin-top: -3vw;
+    margin-left: 19vw;
+}
+.logo {
+    position: relative;
+    margin-top: -7vw;
+    width: 20vw;
+    margin-bottom: 20px;
+}
+
+
+
+.caja_naranja h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.caja_naranja p {
+    font-size: 18px;
+    margin: 5px 0 0;
+}
+
+
+.container {
+    background-color: #1e1e1e;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.form-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 2;
+}
+.background{
+    
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    
+}
+
+.form-box h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+}
+
+.form-box button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ED7D31;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-box button:hover {
+    background-color: #ED7D31;
+}
+
+.form-container::before {
+    content: "";
+    position: absolute;
+    background-image: url(''); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    inset: 0;
+    z-index: 1;
+}
