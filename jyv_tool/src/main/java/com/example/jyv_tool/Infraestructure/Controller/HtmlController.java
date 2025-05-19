@@ -9,6 +9,6 @@ import org.springframework.ui.Model;
 public class HtmlController {
     @GetMapping("/Home")
     public String index(Model model) {
-        return "PaginaInicio"; 
+        return "perfil"; 
     }
 }
