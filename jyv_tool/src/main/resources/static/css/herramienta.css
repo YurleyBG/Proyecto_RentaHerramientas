@@ -1,0 +1,90 @@
+@font-face {
+    font-family: letra1;
+    src: url(/TT\ Interphases\ Pro\ Trial\ DemiBold.ttf);
+}
+@font-face {
+    font-family: letra2;
+    src: url(/TT\ Interphases\ Pro\ Mono\ Trial\ Regular.ttf);
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: letra1;
+}
+.header{
+    background-color: #ED7D31;
+    display: flex;
+    justify-content: space-between;
+}
+.logo img{
+    margin-left: 20px;
+    width: 130px;
+    height: 70px;
+}
+.notifi_User{
+    display: flex;
+    width: 180px;
+    align-items: center;
+    justify-content: space-around;
+}
+.notifi_User img{
+        width: 40px;
+}
+.circle_users{
+    background-color: antiquewhite;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+.navbar{
+    font-size: 25px;
+    display: flex;
+    margin-top: 5px;
+    width: 60em;
+    justify-content: space-around;
+}
+.navbar img{
+    margin-top: 13px;
+    width: 35px;
+}
+.navbar a{
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.bloque_imagen{
+    display: flex;
+    width: 120em;
+    height: 23em;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.fondo_ladrillos{
+    width: 900px;
+
+}
+.palabras_incitadoras{
+    position: absolute;
+    left: 4em;
+    font-size: 3em;
+    color: white;
+    text-align: center;
+    font-family: letra2;
+}
+.palabras_incitadoras span{
+    color: #ED7D31;
+    font-family: letra1;
+
+}
+.imagen_persona_herramientas{
+    width: 900x;   
+}
+
