@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagos - JVV Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #e67319;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+
+    nav a:hover::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+    }
+
+    .perfil {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .perfil img {
+      width: 32px;
+      border-radius: 50%;
+    }
+
+    .pago-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .pago-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .btn-pagar {
+      margin-top: 30px;
+      width: 100%;
+      background-color: #e67319;
+      color: white;
+      border: none;
+      padding: 14px;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-pagar:hover {
+      background-color: #cc5b12;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="img/logo_JYV_TOOLS.png" alt="Logo JVV Tools">
+    </div>
+    <nav>
+      <a href="#">🔧 Herramientas</a>
+      <a href="#">📅 Reservaciones</a>
+      <a href="#"><u>💳 Pagos</u></a>
+      <a href="#">📄 Historial</a>
+      <a href="#">🧾 Facturas</a>
+    </nav>
+    <div class="perfil">
+      <span>🔔</span>
+      <img src="img/usuario.png" alt="Usuario">
+    </div>
+  </header>
+
+  
+  <div class="pago-container">
+    <h2>Pago de Reservación</h2>
+
+    <form id="form-pago">
+      <label for="precioDia">Precio por día</label>
+      <input type="number" id="precioDia" placeholder="$" value="20000">
+
+      <label for="dias">Días</label>
+      <input type="number" id="dias" placeholder="Cantidad de días" value="1">
+
+      <label for="cantidad">Cantidad</label>
+      <input type="number" id="cantidad" placeholder="Cantidad de herramientas" value="1">
+
+      <label for="metodoPago">Método de Pago</label>
+      <select id="metodoPago">
+        <option value="tarjeta">💳 Tarjeta</option>
+        <option value="pse">🏦 PSE</option>
+      </select>
+
+      <div class="total" id="total">
+        Total a pagar: $20.000
+      </div>
+
+      <button type="submit" class="btn-pagar">Realizar Pago</button>
+    </form>
+  </div>
+
+  <script>
+    const precioDiaInput = document.getElementById('precioDia');
+    const diasInput = document.getElementById('dias');
+    const cantidadInput = document.getElementById('cantidad');
+    const totalDiv = document.getElementById('total');
+
+    function calcularTotal() {
+      const precioDia = parseFloat(precioDiaInput.value) || 0;
+      const dias = parseInt(diasInput.value) || 0;
+      const cantidad = parseInt(cantidadInput.value) || 0;
+      const total = precioDia * dias * cantidad;
+      totalDiv.textContent = `Total a pagar: $${total.toLocaleString()}`;
+    }
+
+    precioDiaInput.addEventListener('input', calcularTotal);
+    diasInput.addEventListener('input', calcularTotal);
+    cantidadInput.addEventListener('input', calcularTotal);
+  </script>
+
+</body>
+</html>
