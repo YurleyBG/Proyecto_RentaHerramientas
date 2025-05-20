@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Herramientas</title>
-    <link rel="stylesheet" href="/jyv_tool/src/main/resources/static/css/registro_Herramientas.css">
+    <link rel="stylesheet" href="/provedor/styles/registro_Herramientas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -15,9 +15,9 @@
             <div class="logo"><img src="/img/image-removebg-preview.png" alt=""></div>
             <div class="navbar">
                 <a class="icon1" href=""><img src="/img/herramienta-de-reparacion.png" alt=""> Herramientas</a>
-                <a class="icon2" href=""><img src="/img/grifo.png" alt="">Solicitud  Alquiler</a>
-                <a class="icon3" href=""><img src="/img/billete-de-banco.png" alt="">Registrar Herramientas</a>
-                <a class="icon4" href=""><img src="/img/historial-de-transacciones.png" alt="">Devoluciones</a>
+                <a class="icon2" href=""><img src="/img/grifo.png" alt="">Reservaciones</a>
+                <a class="icon3" href=""><img src="/img/billete-de-banco.png" alt="">Pagos</a>
+                <a class="icon4" href=""><img src="/img/historial-de-transacciones.png" alt="">Historial</a>
                 <a class="icon5" href=""><img src="/img/factura.png" alt=""> Facturas</a>
             </div>
             <div class="notifi_User">
@@ -35,9 +35,17 @@
             <div class="bloque2Registro">
                 <div class="bloque3Registro">
                     <div class="registoLeft">
-                        <p>Nombre de la Herramienta <br><input type="text" value=""></p>
-                        <p>Cantidad <br><input type="text" value=""></p>
-                        <p>Categorígit a <br><input type="text" value=""></p>
+                        <p class="nombre">Nombre de la Herramienta <br><input type="text" value=""></p>
+                        <p class="cantidad">Cantidad <br><input type="text" value=""></p>
+                        <div class="categoriaEnum">
+                            <label for="metodoPago">Categoria</label>
+                            <select id="metodoPago" >
+                                <option value="manual"></option>
+                                <option value="manual">Manuales</option>
+                                <option value="manual">Electricas</option>
+                                <option value="manual">neumáticas</option>
+                            </select>
+                        </div>
                         <p>URL de Imagen de la Herramienta <br><input type="text" value=""></p>
                     </div>
 

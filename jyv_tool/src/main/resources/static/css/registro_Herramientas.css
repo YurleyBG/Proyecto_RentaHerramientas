@@ -15,8 +15,6 @@ body{
     background-color: #ED7D31;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
 }
 .logo img{
     margin-left: 20px;
@@ -106,12 +104,12 @@ span{
 .registoLeft{
     display: flex;
     flex-direction: column;
-    gap:1em;
+    gap:2.4em;
 }
 .registroRight{
     display: flex;
     flex-direction: column;
-    gap:1em;
+    gap:0.9em;
 }
 p{
     font-size: 1.4em;
@@ -122,4 +120,22 @@ input{
     font-size: 1em;
     border-radius: 7px;
     border: none;
+}
+.nombre{
+    margin-bottom: 0.1em;
+}
+.categoriaEnum{
+    margin-top: -0.5em;
+    display: flex;
+    flex-direction: column;
+}
+select{
+    width: 47em;
+    height: 3.7em;
+    border-radius: 0.5em;
+    border:none;
+}
+label{
+    font-size: 1.4em;
+    
 }
