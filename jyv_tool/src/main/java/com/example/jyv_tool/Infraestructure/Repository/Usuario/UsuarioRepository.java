@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.example.jyv_tool.Domain.Entity.Usuario;
 
+
 @Repository
 public interface  UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario>findByid(Long id);
+    Optional<Usuario>findByUsername(String username);
 
 }

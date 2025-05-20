@@ -19,14 +19,14 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Nombre;
+    private String nombre;
     
     @OneToMany(mappedBy="rol",fetch= FetchType.EAGER)
     @JsonManagedReference
     private List<Usuario> usuarios ;
 
-    public Rol(String Nombre, Long id) {
-        this.Nombre = Nombre;
+    public Rol(String nombre, Long id) {
+        this.nombre = nombre;
         this.id = id;
     }
 
@@ -42,11 +42,11 @@ public class Rol {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<Usuario> getUsuarios() {
