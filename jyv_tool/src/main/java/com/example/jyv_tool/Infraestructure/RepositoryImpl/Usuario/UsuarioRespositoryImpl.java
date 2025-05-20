@@ -60,8 +60,8 @@ public class UsuarioRespositoryImpl implements UsuarioService {
         nuevousers.setCorreo(newUser.getCorreo());
         nuevousers.setDireccion(newUser.getDireccion());
         nuevousers.setTelefono(newUser.getTelefono());
-        nuevousers.setContraseña(newUser.getContraseña());
-        nuevousers.setUsuario(newUser.getUsuario());
+        nuevousers.setPassword(newUser.getContraseña());
+        nuevousers.setUsername(newUser.getUsuario());
         Long roleId = newUser.getId_rol();
         Rol rolcito = rolrepository.findById(roleId).orElseThrow(() -> new RuntimeException("Rol no encontrado con ID: " + roleId));
         nuevousers.setRol(rolcito);
@@ -76,8 +76,8 @@ public class UsuarioRespositoryImpl implements UsuarioService {
         Userresp.setCorreo(UserSave.getCorreo());
         Userresp.setDireccion(UserSave.getDireccion());
         Userresp.setTelefono(UserSave.getTelefono());
-        Userresp.setContraseña(UserSave.getContraseña());
-        Userresp.setUsuario(UserSave.getUsuario());
+        Userresp.setContraseña(UserSave.getPassword());
+        Userresp.setUsuario(UserSave.getUsername());
         Userresp.setId_rol(UserSave.getRol().getId());
 
         return Userresp;
@@ -110,10 +110,10 @@ public class UsuarioRespositoryImpl implements UsuarioService {
             usuar.setTelefono(user.getTelefono());
         }
         if(user.getContraseña()!=null){
-            usuar.setContraseña(user.getContraseña());
+            usuar.setPassword(user.getContraseña());
         }
         if(user.getUsuario()!=null){
-            usuar.setUsuario(user.getUsuario());
+            usuar.setUsername(user.getUsuario());
         }
 
         usuarioRepository.save(usuar);
@@ -125,8 +125,8 @@ public class UsuarioRespositoryImpl implements UsuarioService {
         resp.setCorreo(usuar.getCorreo());
         resp.setDireccion(usuar.getDireccion());
         resp.setTelefono(usuar.getTelefono());
-        resp.setContraseña(usuar.getContraseña());
-        resp.setUsuario(usuar.getUsuario());
+        resp.setContraseña(usuar.getPassword());
+        resp.setUsuario(usuar.getUsername());
         return resp;
        
  

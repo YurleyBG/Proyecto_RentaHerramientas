@@ -9,4 +9,6 @@ import com.example.jyv_tool.Domain.Entity.Rol;
 @Repository
 public interface RolRepository extends JpaRepository<Rol,Long> {
     Optional<Rol>findByid(Long id);
+    Optional<Rol> findByNombre(String nombre);
+
 }
