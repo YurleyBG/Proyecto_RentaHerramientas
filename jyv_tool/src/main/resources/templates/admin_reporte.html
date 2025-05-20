@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generar Reporte por Herramienta - JVV</title>
+  <link rel="stylesheet" href="style_admin_reporte.css" />
+</head>
+<body>
+  <header>
+    <div class="logo"><img class="foto_logo"  src="img/logo_JYV_TOOLS.png" alt=""></div>
+    <div>
+       <nav class="navegacion-links">
+        <a href="admin_herramienta.html">Herramientas</a>
+        <a href="admin_registrar.html">Registrar</a>
+        <a href="admin_eliminar.html">Eliminar</a>
+        <a href="admin_reporte.html">Reporte</a>
+
+        <a href="admin_devolucion.html">Devolución</a>
+        <a href="admin_historial.html">Historial</a>
+        <span>🔔</span>
+       <span>👤</span>
+      </nav>
+    </div>
+  </header>
+
+
+  <div class="main">
+    <h2>Generar Reporte por Herramienta</h2>
+    <form>
+      <label for="herramienta">Selecciona la herramienta:</label>
+      <select id="herramienta" name="herramienta" required>
+        <option value="" disabled selected>-- Elige una herramienta --</option>
+        <option value="herramienta1">Herramienta 1</option>
+        <option value="herramienta2">Herramienta 2</option>
+        <option value="herramienta3">Herramienta 3</option>
+        <!-- Añade más opciones según tus herramientas -->
+      </select>
+
+      <label for="tipoReporte">Tipo de reporte:</label>
+      <select id="tipoReporte" name="tipoReporte" required>
+        <option value="uso">Uso</option>
+        <option value="reservas">Reservas</option>
+        <option value="ingresos">Ingresos</option>
+      </select>
+
+      <button class="btn" type="submit">Generar</button>
+    </form>
+  </div>
+</body>
+</html>
