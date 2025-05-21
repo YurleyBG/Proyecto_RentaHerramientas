@@ -1,11 +1,11 @@
 
-INSERT INTO roles (nombre) VALUES 
+INSERT INTO rol (nombre) VALUES 
 ('administrador'), 
 ('cliente'), 
 ('proveedor');
 
 
-INSERT INTO localidades (nombre, descripcion) VALUES
+INSERT INTO localidad (nombre, descripcion) VALUES
 ('La Libertad', 'zona suroriental, cerca de la Av. 10E'),
 ('San Luis', 'sector occidental, vía a San Faustino'),
 ('Caobos', 'zona céntrica, al norte del centro comercial Ventura Plaza'),
@@ -28,13 +28,13 @@ INSERT INTO localidades (nombre, descripcion) VALUES
 ('La Ceiba', 'zona oriental, cerca de la avenida Gran Colombia');
 
 
-INSERT INTO categorias (nombre, descripcion) VALUES 
+INSERT INTO Categoria (nombre, descripcion) VALUES 
 ('manuales', 'Herramientas que se utilizan sin energía eléctrica ni neumática'), 
 ('eléctricas', 'Herramientas que funcionan con electricidad'), 
 ('neumáticas', 'Herramientas que funcionan con aire comprimido');
 
 
-INSERT INTO estados (nombre) VALUES 
+INSERT INTO Estado (nombre) VALUES 
 ('Disponible'),
 ('En mantenimiento'),
 ('Reservado'),
@@ -57,7 +57,7 @@ INSERT INTO estados (nombre) VALUES
 ('Revisado');
 
 
-INSERT INTO usuarios (nombre1, nombre2, apellido1, apellido2, correo, id_rol, id_localidad, telefono, direccion) VALUES
+INSERT INTO usuario (nombre1, nombre2, apellido1, apellido2, correo, id_rol, id_localidad, telefono, direccion) VALUES
 ('Juan', 'Carlos', 'Pérez', 'Gómez', 'juan.perez@example.com', 1, 3, '3001234567', 'Calle 10 #23-45'),
 ('Ana', 'María', 'Ríos', 'Torres', 'ana.rios@example.com', 2, 5, '3102345678', 'Carrera 7 #89-12'),
 ('Luis', 'Fernando', 'Martínez', 'Díaz', 'luis.martinez@example.com', 3, 8, '3113456789', 'Diagonal 33 #12-55'),
@@ -79,8 +79,8 @@ INSERT INTO usuarios (nombre1, nombre2, apellido1, apellido2, correo, id_rol, id
 ('Felipe', 'Antonio', 'Rojas', 'Valencia', 'felipe.rojas@example.com', 3, 19, '3279012345', 'Calle 23 #56-89'),
 ('Diana', 'Marcela', 'Patiño', 'Álvarez', 'diana.patino@example.com', 2, 20, '3280123456', 'Carrera 11 #10-20');
 
--- 6. detalles_proveedores (20 registros, relacionados con usuarios con rol proveedor)
-INSERT INTO detalles_proveedores (id_usuario, nit, nombre_empresa, direccion, telefono, correo_electronico) VALUES
+
+INSERT INTO DetalleProveedor (id_usuario, nit, nombre_empresa, direccion, telefono, correo_electronico) VALUES
 (3, '900123456-1', 'FerreMartínez', 'Diagonal 33 #12-55', '3113456789', 'contacto@ferremartinez.com'),
 (5, '900234567-2', 'ElectroGómez', 'Calle 45 #67-89', '3135678901', 'ventas@electrogomez.com'),
 (8, '900345678-3', 'HerramientasCastaño', 'Circular 5 #90-11', '3168901234', 'info@herrcastano.com'),
@@ -103,7 +103,7 @@ INSERT INTO detalles_proveedores (id_usuario, nit, nombre_empresa, direccion, te
 (10, '902345678-0', 'NeumáticasSuárez2', 'Carrera 10 #76-65', '3180123456', 'neumaticas2@suarez.com');
 
 
-INSERT INTO reportes_generales (id_usuario, fecha_reporte, ingreso, Herramienta_Mas_alquilado, Total_alquiler) VALUES
+INSERT INTO ReporteGeneral (id_usuario, fecha_reporte, ingreso, Herramienta_Mas_alquilado, Total_alquiler) VALUES
 (1, '2025-01-01 10:00:00', 50000.00, 'Taladro Eléctrico', 10),
 (2, '2025-01-02 12:00:00', 30000.00, 'Martillo Neumático', 8),
 (3, '2025-01-03 14:00:00', 75000.00, 'Sierra Circular', 12),
@@ -126,7 +126,7 @@ INSERT INTO reportes_generales (id_usuario, fecha_reporte, ingreso, Herramienta_
 (20, '2025-01-20 20:00:00', 75000.00, 'Martillo Neumático', 15);
 
 
-INSERT INTO herramientas (nombre, id_categoria, id_estado, imagen_url) VALUES
+INSERT INTO herramienta (nombre, id_categoria, id_estado, imagen_url) VALUES
 ('Taladro Eléctrico', 2, 1, 'http://example.com/taladro.jpg'),
 ('Martillo Neumático', 3, 2, 'http://example.com/martillo.jpg'),
 ('Sierra Circular', 2, 3, 'http://example.com/sierra.jpg'),
@@ -172,7 +172,7 @@ INSERT INTO inventario (id_proveedor, fecha_actualizacion, Stock, id_herramienta
 (10, '2025-01-20 20:00:00', 15, 20);
 
 
-INSERT INTO detalles_herramientas (id_herramienta, marca, modelo, precio_diario, descripcion) VALUES
+INSERT INTO DetalleHerramienta (id_herramienta, marca, modelo, precio_diario, descripcion) VALUES
 (1, 'Bosch', 'GBH 2-26', 15000.00, 'Taladro eléctrico de alta potencia'),
 (2, 'Makita', 'HM1810', 20000.00, 'Martillo neumático robusto'),
 (3, 'DeWalt', 'DWE575SB', 18000.00, 'Sierra circular de precisión'),
@@ -195,7 +195,7 @@ INSERT INTO detalles_herramientas (id_herramienta, marca, modelo, precio_diario,
 (20, 'Felco', 'F-2', 8000.00, 'Tijera de poda ergonómica');
 
 
-INSERT INTO herramientas_mantenimientos (id_herramienta, fecha_mantenimiento, descripcion, costo) VALUES
+INSERT INTO HerramientaMantenimiento (id_herramienta, fecha_mantenimiento, descripcion, costo) VALUES
 (1, '2025-01-01 10:00:00', 'Cambio de escobillas', 5000.00),
 (2, '2025-01-02 12:00:00', 'Limpieza de válvulas', 7000.00),
 (3, '2025-01-03 14:00:00', 'Afilado de hoja', 6000.00),
@@ -218,7 +218,7 @@ INSERT INTO herramientas_mantenimientos (id_herramienta, fecha_mantenimiento, de
 (20, '2025-01-20 20:00:00', 'Afilado de cuchillas', 3500.00);
 
 
-INSERT INTO reservas (id_cliente, id_herramienta, fecha_inicio, fecha_fin, estado_de_reservacion, costo_total) VALUES
+INSERT INTO reserva (id_cliente, id_herramienta, fecha_inicio, fecha_fin, estado_de_reservacion, costo_total) VALUES
 (2, 1, '2025-02-01', '2025-02-03', 'Confirmada', 30000.00),
 (4, 2, '2025-02-02', '2025-02-04', 'Pendiente', 40000.00),
 (7, 3, '2025-02-03', '2025-02-05', 'Confirmada', 36000.00),
@@ -287,7 +287,7 @@ INSERT INTO devoluciones (id_alquiler, fecha_devolucion, estado_herramienta, com
 (20, '2025-02-22 20:00:00', 'Bueno', 'Funciona correctamente');
 
 
-INSERT INTO multas_daños (id_reserva, descripcion, costo, fecha_registro) VALUES
+INSERT INTO multas (id_reserva, descripcion, costo, fecha_registro) VALUES
 (1, 'Sin daños', 0.00, '2025-02-03 10:00:00'),
 (2, 'Pérdida de pieza', 5000.00, '2025-02-04 12:00:00'),
 (3, 'Sin daños', 0.00, '2025-02-05 14:00:00'),
@@ -310,7 +310,7 @@ INSERT INTO multas_daños (id_reserva, descripcion, costo, fecha_registro) VALUE
 (20, 'Sin daños', 0.00, '2025-02-22 20:00:00');
 
 
-INSERT INTO formas_de_pago (Metodo_pago) VALUES
+INSERT INTO FormaPago (Metodo_pago) VALUES
 ('Tarjeta de Crédito'),
 ('Tarjeta de Débito'),
 ('Transferencia Bancaria'),
@@ -333,7 +333,7 @@ INSERT INTO formas_de_pago (Metodo_pago) VALUES
 ('Mercado Pago');
 
 
-INSERT INTO pagos (id_estado, id_reserva, id_forma_pago, monto, fecha_pago) VALUES
+INSERT INTO pago (id_estado, id_reserva, id_FormaPago, monto, fecha_pago) VALUES
 (15, 1, 1, 30000.00, '2025-02-01 10:00:00'),
 (15, 2, 2, 40000.00, '2025-02-02 12:00:00'),
 (15, 3, 3, 36000.00, '2025-02-03 14:00:00'),
@@ -356,7 +356,7 @@ INSERT INTO pagos (id_estado, id_reserva, id_forma_pago, monto, fecha_pago) VALU
 (15, 20, 20, 16000.00, '2025-02-20 20:00:00');
 
 
-INSERT INTO facturas (id_pago, numero_factura, fecha, monto_total) VALUES
+INSERT INTO factura (id_pago, numero_factura, fecha, monto_total) VALUES
 (1, 'FAC001', '2025-02-01 10:00:00', 30000.00),
 (2, 'FAC002', '2025-02-02 12:00:00', 40000.00),
 (3, 'FAC003', '2025-02-03 14:00:00', 36000.00),
@@ -379,7 +379,7 @@ INSERT INTO facturas (id_pago, numero_factura, fecha, monto_total) VALUES
 (20, 'FAC020', '2025-02-20 20:00:00', 16000.00);
 
 
-INSERT INTO detalles_factura (id_factura, Cantidad, descripcion, monto_unitario) VALUES
+INSERT INTO DetalleFactura (id_factura, Cantidad, descripcion, monto_unitario) VALUES
 (1, 2, 'Alquiler de Taladro Eléctrico', 15000.00),
 (2, 2, 'Alquiler de Martillo Neumático', 20000.00),
 (3, 2, 'Alquiler de Sierra Circular', 18000.00),
@@ -425,7 +425,7 @@ INSERT INTO notificaciones (id_usuario, id_alquiler, mensaje, fecha_envio, leida
 (4, 20, 'Su alquiler ha sido confirmado.', '2025-02-20 20:00:00', TRUE);
 
 
-INSERT INTO entregas (estado, id_alquiler, direccion_entrega, fecha_entrega, costo_entrega) VALUES
+INSERT INTO entrega (estado, id_alquiler, direccion_entrega, fecha_entrega, costo_entrega) VALUES
 ('Entregado', 1, 'Calle 10 #23-45', '2025-02-01 10:00:00', 5000.00),
 ('Pendiente', 2, 'Carrera 7 #89-12', '2025-02-02 12:00:00', 5000.00),
 ('Entregado', 3, 'Diagonal 33 #12-55', '2025-02-03 14:00:00', 5000.00),
