@@ -1,45 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio JVV Tools</title>
-  <link rel="stylesheet" href="style_Inicio_sesion.css">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/style_Inicio_sesion.css}">
 </head>
 <body>
 
   <div class="caja_naranja">
-    <img class="casco" src="img/casco1.png" alt="Casco"> 
-    <img class="logo" src="img/logo_JYV_TOOLS.png" alt="Logo">
+    <a th:href="@{/Home}"><img class="back" th:src="@{/img/back.png}" alt="Casco"> </a>
+    <img class="casco" th:src="@{/img/Casco.png}" alt="Casco"> 
+    <img class="logo" th:src="@{/img/logo (2).png}" alt="Logo">
   </div>
 
   <div class="container">
-    <div class="caja_inicio">
-      <h2>Iniciar Sesión</h2>
+    <div class="caja_inicio" >
+      <form id="login">
+        <h2>Iniciar Sesión</h2>
 
-      <div class="input-icon">
-        <i class="usuario"></i>
-        <input type="text" placeholder="Usuario">
-      </div>
+        <div class="input-icon">
+          <i class="usuario"></i>
+          <input id="usuario" type="text" placeholder="Usuario" required>
+        </div>
 
-      <div class="input-icon">
-        <i class="contraseña"></i>
-        <input type="password" placeholder="Contraseña">
-      </div>
+        <div class="input-icon">
+          <i class="contraseña"></i>
+          <input id="contraseña" type="password" placeholder="Contraseña" required>
+        </div>
 
-      <label class="checkbox-label">
-        <input type="checkbox"> Mostrar contraseña
-      </label>
+        <label class="checkbox-label">
+          <input type="checkbox"> 
+          <p class="ver">Mostrar contraseña</p>
+        </label>
 
-      <button>Iniciar</button>
+        <button type="submit">Iniciar</button>
 
-      <p class="registro-link">
-        ¿No tienes cuenta? <a href="index.html">Por favor regístrate</a>
-      </p>
+        <p class="registro-link">
+          ¿No tienes cuenta? <a th:href="@{/registrar}">Por favor regístrate</a>
+        </p>
+
+
+      </form>
+      
+      
+      
     </div>
   </div>
 
 </body>
+<script th:src="@{/js/login.js}"></script>
 </html>

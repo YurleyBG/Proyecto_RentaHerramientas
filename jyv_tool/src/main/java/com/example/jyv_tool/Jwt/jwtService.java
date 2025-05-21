@@ -18,7 +18,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class jwtService {
 
-    private static final String SECRET_KEY="435678939BDHJD43767384HJHHJDHJDHJ4267783894937HJHDHJHDHJ342453";
+    private static final String SECRET_KEY="sdfsdfkljwefkjlkj342kljlkj42lkhjklhjlkhjkklhjlkhjlkj4lkjlkj43kjh43kjh43kjh43kjh43";
    
     public String getToken(UserDetails usuario){
         return getToken(new HashMap<>(),usuario);

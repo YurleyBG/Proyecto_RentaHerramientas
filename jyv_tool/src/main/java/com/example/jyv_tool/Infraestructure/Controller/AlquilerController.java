@@ -21,7 +21,7 @@ import com.example.jyv_tool.Domain.Dto.Alquiler.ResponseAlquilar;
 import com.example.jyv_tool.Domain.Entity.Alquiler;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class AlquilerController {
 
     

@@ -16,7 +16,7 @@ import com.example.jyv_tool.Application.Service.FacturaService;
 import com.example.jyv_tool.Domain.Entity.Factura;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class FacturaController {
 
     

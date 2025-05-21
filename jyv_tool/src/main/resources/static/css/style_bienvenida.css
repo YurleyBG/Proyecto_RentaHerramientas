@@ -6,7 +6,9 @@ body {
     background-color: #000000;
     font-family: 'Arial', sans-serif;
 }
-
+.hidden{
+    display: none;
+}
 .caja_naranja {
     background-color: #ED7D31;
     width: 20%;
@@ -18,14 +20,15 @@ body {
 }
 
 .casco {
-    width: 26vw;
-    margin-top: -5vw;
+    width: 22vw;
+    margin-top: -6vw;
     margin-left: 19vw;
+ 
 }
 
 .logo {
     width: 40vw;
-    margin-top: -12vw;
+    margin-top: -11vw;
     margin-left: 38vw;
     z-index: 2;
 }
@@ -40,19 +43,21 @@ body {
 }
 
 .form-box {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid #ccc;
+   
     border-radius: 10px;
-    padding: 40px;
+    padding: 50px;
     max-width: 400px;
     width: 100%;
     text-align: center;
-    margin-left: 10vw;
+    margin-left: 25vw;
+    margin-top: 70px;
+    box-shadow: 0vw 0.1vw 1vw 0vw #272727;
 }
 
 .form-box h2 {
     color: white;
     margin-bottom: 10px;
+    font-size: 2vw;
 }
 
 .mensaje {
@@ -62,8 +67,9 @@ body {
 
 .btn-opcion {
     display: block;
-    width: 100%;
+    width: 80%;
     padding: 12px;
+    margin-left: 2vw;
     margin-bottom: 15px;
     text-align: center;
     border-radius: 20px;
@@ -75,5 +81,5 @@ body {
 }
 
 .btn-opcion:hover {
-    background-color: #ED7D31;
+    background-color: #e06716;
 }

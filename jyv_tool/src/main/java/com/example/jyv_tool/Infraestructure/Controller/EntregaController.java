@@ -21,7 +21,7 @@ import com.example.jyv_tool.Domain.Dto.Entrega.ResponseEntrega;
 import com.example.jyv_tool.Domain.Entity.Entrega;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class EntregaController {
 
     

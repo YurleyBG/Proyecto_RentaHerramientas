@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JVV Tools - Bienvenido</title>
-  <link rel="stylesheet" href="style_bienvenida.css">
+    <meta charset="UTF-8">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/style_bienvenida.css}">
 </head>
 <body>
 
   <div class="caja_naranja">
-    <img class="casco" src="img/casco1.png" alt="Casco">
-    <img class="logo" src="img/logo_JYV_TOOLS.png" alt="Logo">
+    <img class="casco" th:src="@{/img/Casco.png}"alt="Casco">
+    <img class="logo" th:src="@{/img/logo (2).png}" alt="Logo">
   </div>
 
   <div class="container">
     <div class="form-box">
       <h2>Bienvenido</h2>
       <p class="mensaje">¿Qué deseas hacer?</p>
-      <a href="index1.html" class="btn-opcion">Iniciar Sesión</a>
-      <a href="index.html" class="btn-opcion">Registrarse</a>
+      <div id="sinLogin" class="botones-area">
+        <a th:href="@{/login}" class="btn-opcion">Iniciar Sesión</a>
+        <a  th:href="@{/registrar}" class="btn-opcion">Registrarse</a>
+       
+      </div>
     </div>
   </div>
 

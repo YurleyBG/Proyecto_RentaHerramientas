@@ -22,21 +22,27 @@ body {
     color: white;
     padding: 20px;
 }
-.casco{
+.back{
+    width: 3vw;
+    height: 3vw;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+}
+.casco {
     position: relative;
-    width: 32vw;
-    margin-top: -3vw;
-    margin-left: 19vw;
+    width: 26vw;
+    position: absolute;
+    top: 3vw;
+    left: 1vw;
 }
 .logo {
     position: relative;
-    margin-top: -7vw;
-    width: 20vw;
-    margin-bottom: 20px;
+    width: 25vw;
+    position: absolute;
+    top: 22vw;
+    left: 1vw;
 }
-
-
-
 .caja_naranja h1 {
     font-size: 36px;
     margin: 0;
@@ -123,3 +129,8 @@ body {
     inset: 0;
     z-index: 1;
 }
+option{
+    background-color: rgb(49, 48, 48);
+    color: rgb(247, 245, 245);
+}
+

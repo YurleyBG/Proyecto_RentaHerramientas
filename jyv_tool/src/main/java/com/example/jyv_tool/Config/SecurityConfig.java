@@ -21,6 +21,7 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
+    
     @Bean
     public SecurityFilterChain securityfilterchain (HttpSecurity http) throws Exception {
 
@@ -28,13 +29,18 @@ public class SecurityConfig {
             .csrf(csrf->csrf.disable())
             .authorizeHttpRequests(authRequests->
                 authRequests
+                .requestMatchers("/Perfil").hasAnyAuthority("Usuario", "Administrador", "Proveedor")
+                .requestMatchers("/admin/**").hasAuthority("Administrador")
+                .requestMatchers("/proveedor/**").hasAuthority("Proveedor")
+                .requestMatchers("/Home","/login","/registrar","/PaginaPrincipal","/Reservas","/Pagos","/Factura","/Perfil").permitAll()
+                .requestMatchers("/favicon.ico","/css/**", "/js/**", "/img/**","/Api/**").permitAll()
                 .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
                 )
                 
             .sessionManagement(sessionManager -> 
                 sessionManager
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authProvider)
             .addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
         

@@ -20,17 +20,26 @@ body {
     color: white;
     padding: 20px;
 }
+.back{
+    width: 3vw;
+    height: 3vw;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+}
 .casco {
     position: relative;
-    width: 32vw;
-    margin-top: -3vw;
-    margin-left: 19vw;
+    width: 26vw;
+    position: absolute;
+    top: 3vw;
+    left: 1vw;
 }
 .logo {
     position: relative;
-    margin-top: -7vw;
-    width: 20vw;
-    margin-bottom: 20px;
+    width: 25vw;
+    position: absolute;
+    top: 22vw;
+    left: 1vw;
 }
 
 .caja_naranja h1 {
@@ -49,7 +58,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 60px;
+  
     position: relative;
 }
 
@@ -62,6 +72,7 @@ body {
     max-width: 400px;
     position: relative;
     z-index: 2;
+    box-shadow: 0vw 0.1vw 1vw 0vw #494949;
 }
 
 .background {
@@ -138,14 +149,20 @@ body {
 
 .checkbox-label {
     color: white;
+    width: 10vw;
     font-size: 12px;
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-}
+    margin-top: -18px;
+    margin-left: 1vw;
 
+}
+.ver{
+    height: 2vw;
+    width: 90vw;
+}
 .checkbox-label input {
-    margin-right: 8px;
+    margin-right: 12px;
 }
 
 .registro-link {

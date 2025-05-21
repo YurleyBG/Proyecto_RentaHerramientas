@@ -1,53 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/styles/herramienta.css">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/herramienta.css}">
 
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <div class="contain">
 
-            <div class="logo"><img src="/img/image-removebg-preview.png" alt=""></div>
+                <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
 
-            <div class="navbar">
-                <a class="icon1" href=""><img src="/img/herramienta-de-reparacion.png" alt=""> Herramientas</a>
-                <a class="icon2" href=""><img src="/img/grifo.png" alt="">Reservaciones</a>
-                <a class="icon3" href=""><img src="/img/billete-de-banco.png" alt="">Pagos</a>
-                <a class="icon4" href=""><img src="/img/historial-de-transacciones.png" alt="">Historial</a>
-                <a class="icon5" href=""><img src="/img/factura.png" alt=""> Facturas</a>
-            </div>
-
-            <div class="notifi_User">
-                <a href="#" class="notificacion"><img src="/img/bell (1).png" alt=""></a>
-                
-                <div class="circle_users">
-                    <a>
-                        <img src="/img/user.png">
-                    </a>
+                <div class="navbar">
+                    <a class="icon1"th:href="@{/PaginaPrincipal}"><img src="/img/herramienta-de-reparacion.png" alt=""> Herramientas</a>
+                    <a class="icon2" th:href="@{/Reservas}"><img src="/img/grifo.png" alt="">Reservaciones</a>
+                    <a class="icon3" th:href="@{/Pagos}"><img src="/img/billete-de-banco.png" alt="">Pagos</a>
+                    <a class="icon4" th:href="@{perfil.html}"><img src="/img/historial-de-transacciones.png" alt="">Historial</a>
+                    <a class="icon5" th:href="@{/Factura}"><img src="/img/factura.png" alt=""> Facturas</a>
                 </div>
 
-            </div>
-
-        </div>
-
-        <div class="bloque_imagen">
-            <img class="fondo_ladrillos" src="/img/fondo_ladrillos.jpg" alt="">
-            <p class="palabras_incitadoras">CONSTRUYE CON CONFIANZA,<br> <span>ALQUILA</span> <br>CON NOSOTROS.</p>
-            <p class="contactos"></p>
-            <img class="imagen_persona_herramientas" src="/img/imagen_persona_herramientas.png" alt="">
-        </div>
-        <div class="buscador_input"></div>
-
-        <div class="botones_scroll">
-            <div class="circle_scroll_left">
-                <span></span>
+                <div class="notifi_User">
+                    <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+                    <a th:href="@{/Perfil}">
+                        <div class="circle_users">
+                            <img src="/img/user.png">
+                        </div>
+                    </a>
+                    <label for="Checko">
+                        <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+                    </label>
+                </div>
             </div>
         </div>
 
+        <input type="checkbox" name="check" id="Checko">
+        <div class="cerrarSesion">
+            <button  id="cerrar" type="submit">Cerrar sesion</button>
+        </div>
     </div>
 </body>
+<script th:src="@{/js/cerrarSesion.js}"></script>
 </html>

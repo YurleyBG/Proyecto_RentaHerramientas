@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>JYV_TOOLS</title>
     <link rel="stylesheet" th:href="@{/css/perfil.css}">
-    
 </head>
 <body>
     <div class="container">
@@ -21,14 +20,13 @@
             </div>
 
             <div class="notifi_User">
-                <a href="#" class="notificacion"><img src="/img/bell (1).png" alt=""></a>
+                <a href="#" class="notificacion"><img th:src="@{\img\campanita.png}" alt=""></a>
                 
-                <div class="circle_users">
-                    <a>
+            </div>
+            <div class="circle_users">
+                    <a th:href="@{/perfil}">
                         <img src="/img/user.png">
                     </a>
-                </div>
-
             </div>
 
         </div>
