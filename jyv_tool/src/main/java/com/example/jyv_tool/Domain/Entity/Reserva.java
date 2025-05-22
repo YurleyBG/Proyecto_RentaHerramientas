@@ -3,6 +3,8 @@ package com.example.jyv_tool.Domain.Entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-
-
 
 @Entity
 public class Reserva {
@@ -26,13 +26,17 @@ public class Reserva {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Cliente",nullable = false)
+    @JsonIgnore
     private Usuario Users;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Estado",nullable = false)
+    @JsonIgnore
     private Estado estados;
+
     @ManyToOne
     @JoinColumn(name = "id_Herramienta")
+    @JsonIgnore
     private Herramienta herramienta;
 
 

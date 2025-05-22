@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -42,6 +43,7 @@ public class Usuario implements UserDetails {
     private String password;
 
     @OneToMany(mappedBy="usuario",fetch= FetchType.EAGER)
+    @JsonIgnore
     private List<DetalleProveedor> detalles_Proveedores ;
  
  
@@ -51,15 +53,25 @@ public class Usuario implements UserDetails {
     private Localidad localidad;
 
     @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
     private List<Multas> multa;
 
     @OneToMany(mappedBy="Users",fetch= FetchType.EAGER)
+    @JsonIgnore
     private List<Reserva> reservas ;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Rol",nullable = false)
     @JsonBackReference
     private Rol rol;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    private List<Notificaciones> notificaciones;
+
+    @OneToMany(mappedBy = "proveedorUsuario") 
+    @JsonIgnore
+    private List<Inventario> inventarios;
 
 
     public Usuario(Long id, String nombre1, String nombre2, String apellido1, String apellido2, String correo,

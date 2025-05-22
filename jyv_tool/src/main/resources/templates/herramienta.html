@@ -7,18 +7,17 @@
 
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="header">
             <div class="contain">
 
                 <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
 
                 <div class="navbar">
-                    <a class="icon1"th:href="@{/PaginaPrincipal}"><img src="/img/herramienta-de-reparacion.png" alt=""> Herramientas</a>
-                    <a class="icon2" th:href="@{/Reservas}"><img src="/img/grifo.png" alt="">Reservaciones</a>
-                    <a class="icon3" th:href="@{/Pagos}"><img src="/img/billete-de-banco.png" alt="">Pagos</a>
-                    <a class="icon4" th:href="@{perfil.html}"><img src="/img/historial-de-transacciones.png" alt="">Historial</a>
-                    <a class="icon5" th:href="@{/Factura}"><img src="/img/factura.png" alt=""> Facturas</a>
+                    <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+                    <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+                    <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+                    <a class="icon4" th:href="@{perfil.html}">📄 Historial</a>
+                    <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
                 </div>
 
                 <div class="notifi_User">
@@ -33,11 +32,51 @@
                     </label>
                 </div>
             </div>
-        </div>
-
+    </div>
+    <div class="container">
+       
         <input type="checkbox" name="check" id="Checko">
         <div class="cerrarSesion">
             <button  id="cerrar" type="submit">Cerrar sesion</button>
+        </div>
+        <div class="body">
+            <div class="cuadro">
+                <img  class="ladrillos"th:src="@{/img/ladrillos.jpg}" alt="">
+                <img class="alquiler" th:src="@{/img/bienvenida.jpg}" alt="">
+            </div>
+           
+        </div>
+        <div class="buscador">
+            <input type="text" name="buscar" class="search" placeholder="   ¿Que estas buscando?">
+
+            <strong class="filtrar"> Filtrar</strong>
+            <select name="" id="">
+                <option value=""></option>
+                <option value="">Categoria</option>
+                <option value="">Precio</option>
+            </select>
+        </div>
+        <strong class="textico">Herramientas Manuales</strong>
+        <div class="herramientas">
+            <div class="seccion1">
+                <div class="herramientascaja">
+                    <div class="cajaimg"></div>
+                    <div class="cajaTexto">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <strong class="textico">Herramientas Electricas</strong>
+        <div class="herramientas2">
+            <div class="seccion1">
+                <div class="herramientascaja">
+                    <div class="cajaimg"></div>
+                    <div class="cajaTexto">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

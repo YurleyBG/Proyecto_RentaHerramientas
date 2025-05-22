@@ -2,6 +2,9 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 
 
@@ -26,24 +30,30 @@ public class Herramienta {
 
     @ManyToOne
     @JoinColumn(name = "id_inventario")
+    @JsonIgnore
     private Inventario inventario;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    @JsonIgnore
     private Categoria categoria;
 
     @OneToMany(mappedBy = "herramienta")
+    @JsonIgnore
     private List<HerramientaMantenimiento> mantenimientos;
 
     @OneToMany(mappedBy = "herramienta")
+    @JsonIgnore
     private List<Notificaciones> notificaciones;
 
     @OneToMany(mappedBy = "herramienta")
+    @JsonIgnore
     private List<Alquiler> alquileres;
 
-
-
-
+    @OneToOne(mappedBy = "herramienta")
+    @JsonManagedReference
+    private DetalleHerramienta Detalle;
+   
     public Herramienta() {
     }
 
@@ -124,5 +134,17 @@ public class Herramienta {
     public void setAlquileres(List<Alquiler> alquileres) {
         this.alquileres = alquileres;
     }
+
+    public DetalleHerramienta getDetalle() {
+        return Detalle;
+    }
+
+    public void setDetalle(DetalleHerramienta Detalle) {
+        this.Detalle = Detalle;
+    }
+
+  
+
+
 
 }

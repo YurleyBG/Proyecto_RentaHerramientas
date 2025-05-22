@@ -3,6 +3,8 @@ package com.example.jyv_tool.Domain.Entity;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +26,25 @@ public class Alquiler {
 
     @ManyToOne
     @JoinColumn(name = "id_reserva")
+    @JsonIgnore
     private Reserva reserva;
 
     @ManyToOne
     @JoinColumn(name = "id_herramienta")
+    @JsonIgnore
     private Herramienta herramienta;
 
     @OneToOne(mappedBy = "alquiler", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Entrega entrega;
 
     @OneToMany(mappedBy = "alquiler")
+    @JsonIgnore
     private List<Devoluciones> devoluciones;
+
+    @OneToMany(mappedBy = "alquiler")
+    @JsonIgnore
+    private List<Notificaciones> notificaciones;
 
     public Alquiler(String estado, Timestamp fecha_alquiler, Timestamp fecha_entrega, Timestamp fecha_esperando, Long id) {
         this.estado = estado;
@@ -117,6 +127,14 @@ public class Alquiler {
 
     public void setDevoluciones(List<Devoluciones> devoluciones) {
         this.devoluciones = devoluciones;
+    }
+
+    public List<Notificaciones> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public void setNotificaciones(List<Notificaciones> notificaciones) {
+        this.notificaciones = notificaciones;
     }
 
 

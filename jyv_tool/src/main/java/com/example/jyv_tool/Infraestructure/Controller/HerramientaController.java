@@ -1,0 +1,44 @@
+package com.example.jyv_tool.Infraestructure.Controller;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import com.example.jyv_tool.Application.Service.HerramientaService;
+import com.example.jyv_tool.Domain.Dto.Herramienta.HerramientaRequest;
+import com.example.jyv_tool.Domain.Dto.Herramienta.ResponseHerramientas;
+import com.example.jyv_tool.Domain.Entity.Herramienta;
+
+@RestController
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
+public class HerramientaController {
+
+    private final HerramientaService herramientaService;
+
+    public HerramientaController(@Lazy HerramientaService herramientaService) {
+        this.herramientaService = herramientaService;
+    }
+
+    @GetMapping("/herramienta")
+    public List<Herramienta> findAll() {
+        List<Herramienta> herramientaResult = herramientaService.findAllHerramienta();
+        return herramientaResult;
+    }
+
+    @PatchMapping("/herramienta/{id}")
+    public ResponseEntity<ResponseHerramientas> UpdateHerramienta (@PathVariable Long id, @RequestBody HerramientaRequest herramienta ){
+        return ResponseEntity.ok().body(herramientaService.UpdateHerramienta(id, herramienta));
+    }
+
+    @PostMapping("/herramienta")
+    public ResponseEntity<ResponseHerramientas> createNewHerramienta(@RequestBody HerramientaRequest newHerramienta) {
+        return new ResponseEntity<>(
+                herramientaService.createNewHerramienta(newHerramienta),
+                HttpStatus.valueOf(200)
+        );
+    }
+}

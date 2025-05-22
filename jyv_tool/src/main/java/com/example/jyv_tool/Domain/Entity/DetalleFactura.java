@@ -2,6 +2,8 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,6 +24,7 @@ public class DetalleFactura {
 
     @OneToOne
     @JoinColumn(name = "id_factura")
+    @JsonIgnore
     private Factura factura;
 
 

@@ -2,7 +2,10 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,12 +25,11 @@ public class DetalleHerramienta {
     private BigDecimal  Precio_Diario;
     private String Descripcion;
 
-    @OneToOne
-    @JoinColumn(name = "id_Herramienta")
+    @OneToOne(fetch = FetchType.LAZY) 
+    @JoinColumn(name = "id_Herramienta", nullable = false) 
+    @JsonBackReference
     private Herramienta herramienta;
-
-
-
+ 
     public DetalleHerramienta(String Descripcion, String Marca, String Modelo, BigDecimal Precio_Diario, Long id) {
         this.Descripcion = Descripcion;
         this.Marca = Marca;
@@ -86,6 +88,9 @@ public class DetalleHerramienta {
     public void setHerramienta(Herramienta herramienta) {
         this.herramienta = herramienta;
     }
+
+    
+  
     
     
 

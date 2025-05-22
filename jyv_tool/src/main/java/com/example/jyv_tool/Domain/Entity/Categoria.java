@@ -2,6 +2,8 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Categoria {
     private String Descripcion;
 
     @OneToMany(mappedBy = "categoria")
+    @JsonIgnore
     private List<Herramienta> herramientas;
 
 

@@ -4,6 +4,8 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,10 +26,12 @@ public class Devoluciones {
 
     @ManyToOne
     @JoinColumn(name = "id_alquiler")
+    @JsonIgnore
     private Alquiler alquiler;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_estado",nullable = false)
+    @JsonIgnore
     private Estado estado;
 
 

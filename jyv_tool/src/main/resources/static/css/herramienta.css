@@ -1,22 +1,10 @@
-@font-face {
-    font-family: letra1;
-    src: url(/TT\ Interphases\ Pro\ Trial\ DemiBold.ttf);
-}
-@font-face {
-    font-family: letra2;
-    src: url(/TT\ Interphases\ Pro\ Mono\ Trial\ Regular.ttf);
-}
+
 body{
     margin: 0;
     padding: 0;
-    font-family: letra1;
+    font-family: 'Arial', sans-serif;
+}
 
-}
-.container{
-    width: 100vw;
-    height: 50vw;
-    overflow: hidden;
-}
 .header{
     width: 100vw;
     background-color: #ED7D31;
@@ -58,20 +46,24 @@ body{
 
 
 .navbar{
-    font-size: 25px;
+    font-size: 1.3vw;
     display: flex;
-    margin-top: 5px;
+    margin-top: 1vw;
     width: 60em;
     justify-content: space-around;
+  
 }
 .navbar img{
     margin-top: 13px;
     width: 35px;
 }
 .navbar a{
-    margin-bottom: 20px;
+    margin-top: -1vw;
     text-decoration: none;
-    color: white;
+    color: rgb(252, 248, 248);
+}
+.navbar a:hover {
+    color: rgb(12, 12, 12);
 }
 
 
@@ -93,11 +85,9 @@ body{
     font-size: 3em;
     color: white;
     text-align: center;
-    font-family: letra2;
 }
 .palabras_incitadoras span{
     color: #ED7D31;
-    font-family: letra1;
 
 }
 .imagen_persona_herramientas{
@@ -127,4 +117,93 @@ body{
 
     display: flex;
 
+}
+.cuadro{
+    justify-content: center;
+    align-items:center ;
+    border: 1px solid black;
+    width: 90vw;
+    height: 20vw;
+    display: flex;
+    flex-direction: row;
+
+}
+.ladrillos{
+    width: 40vw;
+    height: 20vw;
+}
+.alquiler{
+    width: 60vw;
+    height: 20vw;
+}
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
+}
+.buscador{
+    display: flex;
+    position: relative;
+    left: 5vw;
+    width: 90vw;
+    height: 5vw;
+    justify-content: center;
+    align-items: center;
+}
+.search{
+    font-size: 1vw;
+    width: 50vw;
+    height: 2vw;
+    border-radius: 0.5vw;
+    border: 1px solid #ED7D31;
+}
+.filtrar{
+    margin-left: 2vw;
+}
+.herramientas{
+    width: 80vw;
+    height: 20vw;
+    position: relative;
+    left: 10vw;
+    top: 2vw;
+
+}
+.herramientascaja{
+    
+    border: 1px solid #ED7D31;
+    border-radius: 2vw;
+    width: 15vw;
+    height: 18vw;
+    margin-left:1vw ;
+    margin-top: 1vw;
+
+}
+.cajaimg{
+    position: relative;
+    background-color: aliceblue;
+    width: 15vw;
+    height: 14vw;
+     border-radius: 2vw;
+
+}
+.cajaTexto{
+    position: relative;
+    background-color: #ED7D31;
+    width: 15vw;
+    height: 4vw;
+
+}
+.herramientas2{
+    border: 1px solid red;
+    width: 80vw;
+    height: 20vw;
+    position: relative;
+    left: 10vw;
+    top: 3vw;
+}
+.textico{
+    position: relative;
+    top: 1.5vw;
+    left: 10vw;
 }

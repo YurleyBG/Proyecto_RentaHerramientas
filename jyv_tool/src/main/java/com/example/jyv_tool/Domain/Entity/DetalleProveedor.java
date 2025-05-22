@@ -1,5 +1,7 @@
 package com.example.jyv_tool.Domain.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,6 +24,7 @@ public class DetalleProveedor {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_proveedor",nullable = false)
+    @JsonIgnore
     private Usuario usuario;
 
 

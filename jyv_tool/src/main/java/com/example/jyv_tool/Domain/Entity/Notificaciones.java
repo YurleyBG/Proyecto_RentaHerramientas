@@ -2,6 +2,8 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +26,18 @@ public class Notificaciones {
 
     @ManyToOne
     @JoinColumn(name = "id_herramienta")
+    @JsonIgnore
     private Herramienta herramienta;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Alquiler")
+    @JsonIgnore
+    private Alquiler alquiler;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    @JsonIgnore
+    private Usuario usuario;
 
 
     public Notificaciones() {
@@ -76,5 +89,22 @@ public class Notificaciones {
     public void setHerramienta(Herramienta herramienta) {
         this.herramienta = herramienta;
     }
+
+    public Alquiler getAlquiler() {
+        return alquiler;
+    }
+
+    public void setAlquiler(Alquiler alquiler) {
+        this.alquiler = alquiler;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 
 }

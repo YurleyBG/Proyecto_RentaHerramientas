@@ -2,6 +2,8 @@ package com.example.jyv_tool.Domain.Entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -16,15 +18,19 @@ public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
     private String Nombre;
 
     @OneToMany(mappedBy="estados",fetch= FetchType.EAGER)
+    @JsonIgnore
     private List<Reserva> reservas ;
 
     @OneToMany(mappedBy = "estado")
+    @JsonIgnore
     private List<HerramientaMantenimiento> mantenimientos;
 
     @OneToMany(mappedBy = "estado")
+    @JsonIgnore
     private List<Devoluciones> devoluciones;
 
     public Estado(String Nombre, Long id) {

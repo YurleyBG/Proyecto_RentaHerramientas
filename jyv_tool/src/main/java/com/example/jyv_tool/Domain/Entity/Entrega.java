@@ -3,6 +3,8 @@ package com.example.jyv_tool.Domain.Entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +23,7 @@ public class Entrega {
 
     @OneToOne
     @JoinColumn(name = "id_alquiler")
+    @JsonIgnore
     private Alquiler alquiler;
 
 

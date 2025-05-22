@@ -22,7 +22,7 @@ public class HerramientaMantenimiento {
     private BigDecimal costo;
 
     @ManyToOne
-    @JoinColumn(name = "estado_id")
+    @JoinColumn(name = "id_estado")
     private Estado estado;
 
     @ManyToOne

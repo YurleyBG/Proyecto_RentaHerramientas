@@ -3,6 +3,8 @@ package com.example.jyv_tool.Domain.Entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +25,12 @@ public class Factura {
     private BigDecimal Monto_total;
 
     @OneToOne
-    @JoinColumn(name = "id_reserva")
-    private Reserva reserva;
+    @JoinColumn(name = "id_pago")
+    @JsonIgnore
+    private Pago pago;
 
     @OneToOne(mappedBy = "factura", cascade = CascadeType.ALL)
+    @JsonIgnore
     private DetalleFactura detalleFactura;
 
 
@@ -71,15 +75,6 @@ public class Factura {
     public void setMonto_total(BigDecimal Monto_total) {
         this.Monto_total = Monto_total;
     }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-
     public DetalleFactura getDetalleFactura() {
         return detalleFactura;
     }
@@ -87,5 +82,14 @@ public class Factura {
     public void setDetalleFactura(DetalleFactura detalleFactura) {
         this.detalleFactura = detalleFactura;
     }
+
+    public Pago getPago() {
+        return pago;
+    }
+
+    public void setPago(Pago pago) {
+        this.pago = pago;
+    }
+
 
 }

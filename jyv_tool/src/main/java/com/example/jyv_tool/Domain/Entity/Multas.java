@@ -3,6 +3,8 @@ package com.example.jyv_tool.Domain.Entity;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class Multas {
 
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonIgnore 
     private Usuario usuario;
 
     public Multas(BigDecimal costo, String descripcion, Timestamp fecha, Long id) {

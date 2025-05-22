@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 
@@ -18,6 +20,10 @@ public class Inventario {
     private Long id;
     private Timestamp fecha;
     private int stock ;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proveedor_usuario", nullable = false) 
+    private Usuario proveedorUsuario;
 
     @OneToMany(mappedBy = "inventario")
     private List<Herramienta> herramientas;
@@ -63,5 +69,14 @@ public class Inventario {
     public void setHerramientas(List<Herramienta> herramientas) {
         this.herramientas = herramientas;
     }
+
+    public Usuario getProveedorUsuario() {
+        return proveedorUsuario;
+    }
+
+    public void setProveedorUsuario(Usuario proveedorUsuario) {
+        this.proveedorUsuario = proveedorUsuario;
+    }
+
 
 }
