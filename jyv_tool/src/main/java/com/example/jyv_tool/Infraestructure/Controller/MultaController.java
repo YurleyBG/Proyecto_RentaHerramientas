@@ -21,7 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class MultaController {
 
     

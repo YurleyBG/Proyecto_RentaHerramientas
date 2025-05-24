@@ -38,11 +38,11 @@ public class Alquiler {
     @JsonIgnore
     private Entrega entrega;
 
-    @OneToMany(mappedBy = "alquiler")
+    @OneToMany(mappedBy = "alquiler", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Devoluciones> devoluciones;
 
-    @OneToMany(mappedBy = "alquiler")
+    @OneToMany(mappedBy = "alquiler",  cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Notificaciones> notificaciones;
 

@@ -27,7 +27,7 @@ public class Reserva {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Cliente",nullable = false)
     @JsonIgnore
-    private Usuario Users;
+    private Usuario users;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Estado",nullable = false)
@@ -83,13 +83,7 @@ public class Reserva {
         this.costo_total = costo_total;
     }
 
-    public Usuario getUsers() {
-        return Users;
-    }
-
-    public void setUsers(Usuario Users) {
-        this.Users = Users;
-    }
+   
 
     public Estado getEstados() {
         return estados;
@@ -113,6 +107,14 @@ public class Reserva {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Usuario getUsers() {
+        return users;
+    }
+
+    public void setUsers(Usuario users) {
+        this.users = users;
     }
     
 

@@ -37,7 +37,7 @@ public class AlquilerController {
         return ReserveResult;
     }
     @DeleteMapping("/alquiler/{id}")
-    public ResponseEntity<?> DeleteAlquiler(@PathVariable Long id){
+    public ResponseEntity<?> deleteAlquiler(@PathVariable Long id){
 
         boolean deletealquiler= alquilerService.deleteAlquiler(id);
         if (deletealquiler) {

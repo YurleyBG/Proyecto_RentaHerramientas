@@ -9,7 +9,6 @@ import com.example.jyv_tool.Domain.Entity.Inventario;
 public interface InventarioService {
 
     List<Inventario>findAllInventario();
-    ResponseInventario createNewInventario(InventarioRequest newInventario);
     ResponseInventario UpdateInventario(Long id ,InventarioRequest Inventario);
 
 }

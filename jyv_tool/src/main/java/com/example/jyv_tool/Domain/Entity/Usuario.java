@@ -56,7 +56,7 @@ public class Usuario implements UserDetails {
     @JsonIgnore
     private List<Multas> multa;
 
-    @OneToMany(mappedBy="Users",fetch= FetchType.EAGER)
+    @OneToMany(mappedBy="users",fetch= FetchType.EAGER)
     @JsonIgnore
     private List<Reserva> reservas ;
 
@@ -112,6 +112,10 @@ public class Usuario implements UserDetails {
         return true;
     }
 
-   
-
+    public boolean hasRole(String roleName) {
+        if (this.rol == null) {
+            return false; 
+        }
+        return this.rol.getNombre().equalsIgnoreCase(roleName);
+    }
 }

@@ -11,10 +11,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 
 
 @Entity
+@Data 
+@NoArgsConstructor
+@AllArgsConstructor
 public class DetalleHerramienta {
     
     @Id
@@ -25,73 +32,9 @@ public class DetalleHerramienta {
     private BigDecimal  Precio_Diario;
     private String Descripcion;
 
-    @OneToOne(fetch = FetchType.LAZY) 
+    @OneToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name = "id_Herramienta", nullable = false) 
     @JsonBackReference
     private Herramienta herramienta;
  
-    public DetalleHerramienta(String Descripcion, String Marca, String Modelo, BigDecimal Precio_Diario, Long id) {
-        this.Descripcion = Descripcion;
-        this.Marca = Marca;
-        this.Modelo = Modelo;
-        this.Precio_Diario = Precio_Diario;
-        this.id = id;
-    }
-
-    public DetalleHerramienta() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getMarca() {
-        return Marca;
-    }
-
-    public void setMarca(String Marca) {
-        this.Marca = Marca;
-    }
-
-    public String getModelo() {
-        return Modelo;
-    }
-
-    public void setModelo(String Modelo) {
-        this.Modelo = Modelo;
-    }
-
-    public BigDecimal getPrecio_Diario() {
-        return Precio_Diario;
-    }
-
-    public void setPrecio_Diario(BigDecimal Precio_Diario) {
-        this.Precio_Diario = Precio_Diario;
-    }
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
-    }
-
-    public Herramienta getHerramienta() {
-        return herramienta;
-    }
-
-    public void setHerramienta(Herramienta herramienta) {
-        this.herramienta = herramienta;
-    }
-
-    
-  
-    
-    
-
 }

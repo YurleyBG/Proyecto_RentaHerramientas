@@ -1,6 +1,7 @@
 package com.example.jyv_tool.Domain.Dto.Herramienta;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,14 +16,15 @@ import lombok.NoArgsConstructor;
 public class HerramientaRequest {
   
     private String nombre;
-    private String UrlImage;
-
+    private String urlImage;
+    private String nombreProveedor;
     private Long categoriaId;
-
-    private String Marca;
-    private String Modelo;
-    private BigDecimal  Precio_Diario;
-    private String Descripcion;
+    private Timestamp fecha;
+    private int stock ;
+    private String marca;
+    private String modelo;
+    private BigDecimal  precio_Diario;
+    private String descripcion;
 
 
     

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnore
-    private String Nombre;
+    private String nombre;
 
     @OneToMany(mappedBy="estados",fetch= FetchType.EAGER)
     @JsonIgnore
@@ -29,12 +30,12 @@ public class Estado {
     @JsonIgnore
     private List<HerramientaMantenimiento> mantenimientos;
 
-    @OneToMany(mappedBy = "estado")
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Devoluciones> devoluciones;
 
-    public Estado(String Nombre, Long id) {
-        this.Nombre = Nombre;
+    public Estado(String nombre, Long id) {
+        this.nombre = nombre;
         this.id = id;
     }
 
@@ -49,13 +50,7 @@ public class Estado {
         this.id = id;
     }
 
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
+    
 
     public List<Reserva> getReservas() {
         return reservas;
@@ -79,6 +74,14 @@ public class Estado {
 
     public void setDevoluciones(List<Devoluciones> devoluciones) {
         this.devoluciones = devoluciones;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }

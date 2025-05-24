@@ -17,15 +17,15 @@ public class FormaPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Metodo_pago;
+    private String metodopago;
 
     @OneToMany(mappedBy = "formaPago")
     @JsonIgnore
     private List<Pago> pagos;
 
 
-    public FormaPago(String Metodo_pago, Long id) {
-        this.Metodo_pago = Metodo_pago;
+    public FormaPago(String metodopago, Long id) {
+        this.metodopago = metodopago;
         this.id = id;
     }
 
@@ -39,15 +39,6 @@ public class FormaPago {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getMetodo_pago() {
-        return Metodo_pago;
-    }
-
-    public void setMetodo_pago(String Metodo_pago) {
-        this.Metodo_pago = Metodo_pago;
-    }
-
     public List<Pago> getPagos() {
         return pagos;
     }
@@ -55,6 +46,17 @@ public class FormaPago {
     public void setPagos(List<Pago> pagos) {
         this.pagos = pagos;
     }
+
+    public String getMetodopago() {
+        return metodopago;
+    }
+
+    public void setMetodopago(String metodopago) {
+        this.metodopago = metodopago;
+    }
+
+    
+
 
 
 }

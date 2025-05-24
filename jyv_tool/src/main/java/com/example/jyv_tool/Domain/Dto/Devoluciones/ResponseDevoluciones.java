@@ -12,14 +12,19 @@ public class ResponseDevoluciones {
     private Long id;
     private Timestamp Fecha;
     private String Comentarios;
+    private Long idAlquiler;
+    private String nombreEstado;
+
     
     public ResponseDevoluciones() {
     }
 
-    public ResponseDevoluciones(Long id, Timestamp fecha, String comentarios) {
+    public ResponseDevoluciones(Long id, Timestamp fecha, String comentarios, Long idAlquiler, String nombreEstado) {
         this.id = id;
-        Fecha = fecha;
-        Comentarios = comentarios;
+        this.Fecha = fecha;
+        this.Comentarios = comentarios;
+        this.idAlquiler = idAlquiler;
+        this.nombreEstado = nombreEstado;
     }
 
     public Long getId() {
@@ -46,7 +51,21 @@ public class ResponseDevoluciones {
         Comentarios = comentarios;
     }
 
-    
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
+
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
+    }
+
+    public Long getIdAlquiler() {
+        return idAlquiler;
+    }
+
+    public void setIdAlquiler(Long idAlquiler) {
+        this.idAlquiler = idAlquiler;
+    }
 
     
 

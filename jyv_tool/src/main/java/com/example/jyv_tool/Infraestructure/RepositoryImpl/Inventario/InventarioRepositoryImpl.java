@@ -28,20 +28,6 @@ public class InventarioRepositoryImpl implements  InventarioService{
         return inventarioRepository.findAll();
     }
 
-    @Override
-    public ResponseInventario createNewInventario(InventarioRequest newInventario) {
-        Inventario inventario = new Inventario();
-        inventario.setFecha(newInventario.getFecha());
-        inventario.setStock(newInventario.getStock());
-
-        Inventario saved = inventarioRepository.save(inventario);
-
-        ResponseInventario response = new ResponseInventario();
-        response.setFecha(saved.getFecha());
-        response.setStock(saved.getStock());
-
-        return response;
-    }
 
     @Override
     public ResponseInventario UpdateInventario(Long id, InventarioRequest inventarioReq) {

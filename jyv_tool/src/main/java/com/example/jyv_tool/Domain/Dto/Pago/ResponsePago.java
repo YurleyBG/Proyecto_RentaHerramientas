@@ -13,14 +13,18 @@ public class ResponsePago {
     private Long id;
     private BigDecimal monto;
     private Timestamp fecha;
+    private Long idReserva; 
+    private String formaPago;
 
-    public ResponsePago() {
-     
-    }
-    public ResponsePago(Long id, BigDecimal monto, Timestamp fecha) {
+    public ResponsePago(Long id, BigDecimal monto, Timestamp fecha, Long idReserva, String formaPago) {
         this.id = id;
         this.monto = monto;
         this.fecha = fecha;
+        this.idReserva = idReserva;
+        this.formaPago = formaPago;
+    }
+
+    public ResponsePago() {
     }
     public Long getId() {
         return id;
@@ -40,9 +44,25 @@ public class ResponsePago {
     public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
+    public Long getIdReserva() {
+        return idReserva;
+    }
+    public void setIdReserva(Long idReserva) {
+        this.idReserva = idReserva;
+    }
 
+    public String getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(String formaPago) {
+        this.formaPago = formaPago;
+    }
 
     
+    
+    
+
 
 
 

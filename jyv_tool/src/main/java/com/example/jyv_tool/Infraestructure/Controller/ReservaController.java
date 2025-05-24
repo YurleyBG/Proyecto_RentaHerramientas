@@ -21,7 +21,7 @@ import com.example.jyv_tool.Application.Service.ReservaService;
 import com.example.jyv_tool.Domain.Entity.Reserva;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class ReservaController {
 
    
@@ -36,7 +36,7 @@ public class ReservaController {
         List<Reserva> ReserveResult= reservaservice.findAllReserve();
         return ReserveResult;
     }
-    @DeleteMapping("/reserve/{id}")
+    @DeleteMapping("/reserva/{id}")
     public ResponseEntity<?> DeleteUser(@PathVariable Long id){
 
         boolean deleteuser= reservaservice.deleteReserve(id);
@@ -46,7 +46,7 @@ public class ReservaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
-    @PostMapping("/reserve")
+    @PostMapping("/reserva")
     public ResponseEntity<ResponseReserve> createNewReserve(@RequestBody ReserveRequest newReserve) {
         return new ResponseEntity<>(
             reservaservice.createNewReserve(newReserve),
@@ -54,7 +54,7 @@ public class ReservaController {
         );
     }
 
-    @PatchMapping("/reserve/{id}")
+    @PatchMapping("/reserva/{id}")
     public ResponseEntity<ResponseReserve> UpdateReserve(@PathVariable Long id,@RequestBody ReserveRequest Reserve ){
 
         return ResponseEntity.ok().body(reservaservice.UpdateReserve(id,Reserve));

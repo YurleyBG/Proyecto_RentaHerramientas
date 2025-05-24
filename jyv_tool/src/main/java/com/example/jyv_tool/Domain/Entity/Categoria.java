@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,7 @@ public class Categoria {
     private String nombre;
     private String descripcion;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria" , cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Herramienta> herramientas;
 

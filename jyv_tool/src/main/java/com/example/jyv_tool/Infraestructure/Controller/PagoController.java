@@ -22,7 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class PagoController {
 
     
@@ -41,7 +41,7 @@ public class PagoController {
     @PostMapping("/pago")
     public ResponseEntity<ResponsePago> createNewPago(@RequestBody PagoRequest newPago) {
         return new ResponseEntity<>(
-            pagoService.createNewpago(null),
+            pagoService.createNewpago(newPago),
             HttpStatus.valueOf(200)
         );
     }

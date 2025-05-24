@@ -11,9 +11,14 @@ import com.example.jyv_tool.Domain.Dto.Herramienta.ResponseHerramientas;
 import com.example.jyv_tool.Domain.Entity.Categoria;
 import com.example.jyv_tool.Domain.Entity.DetalleHerramienta;
 import com.example.jyv_tool.Domain.Entity.Herramienta;
+import com.example.jyv_tool.Domain.Entity.Inventario;
+import com.example.jyv_tool.Domain.Entity.Usuario;
 
 import org.springframework.context.annotation.Lazy;
+
 import com.example.jyv_tool.Infraestructure.Repository.Herramienta.HerramientaRepository;
+import com.example.jyv_tool.Infraestructure.Repository.Inventario.InventarioRepository;
+import com.example.jyv_tool.Infraestructure.Repository.Usuario.UsuarioRepository;
 import com.example.jyv_tool.Infraestructure.Repository.Categoria.CategoriaRepository;
 
 @Service
@@ -21,11 +26,15 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
     
     private final HerramientaRepository herramientaRepository;
     private final CategoriaRepository categoriaRepository;
+    private final InventarioRepository inventarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public HerramientaRepositoryImpl(@Lazy HerramientaRepository herramientaRepository,
-    @Lazy CategoriaRepository categoriaRepository) {
+    @Lazy CategoriaRepository categoriaRepository, @Lazy InventarioRepository inventarioRepository,@Lazy  UsuarioRepository usuarioRepository) {
         this.herramientaRepository = herramientaRepository;
         this.categoriaRepository=categoriaRepository;
+        this.inventarioRepository=inventarioRepository;
+        this.usuarioRepository=usuarioRepository;
     }
     
     @Override
@@ -46,27 +55,41 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
     @Override
     public ResponseHerramientas createNewHerramienta(HerramientaRequest newHerramienta) {
         if (herramientaRepository.findByNombre(newHerramienta.getNombre()).isPresent()) {
-          
             throw new DuplicateResourceException("Esta herramienta Ya existe : " + newHerramienta.getNombre());
+        }
+        String nombreProveedorUsuario = newHerramienta.getNombreProveedor();
+        Usuario proveedorUsuario;
+        if (nombreProveedorUsuario != null && !nombreProveedorUsuario.trim().isEmpty()) {
+            proveedorUsuario = usuarioRepository.findByUsername(nombreProveedorUsuario)
+                                .orElseThrow(() -> new ResourceNotFoundException("Proveedor no encontrado"));
+
             
+            final String rol = "Proveedor";
+
+            if (!proveedorUsuario.hasRole(rol)) {
+                throw new IllegalArgumentException("el usuario no tiene este rol");
+            }
+
+        } else {
+            throw new IllegalArgumentException("el nombre es obligatorio");
         }
 
-        Herramienta HerramienticaNueva= new Herramienta();
+
+        Herramienta HerramienticaNueva = new Herramienta();
         HerramienticaNueva.setNombre(newHerramienta.getNombre());
         HerramienticaNueva.setUrlImage(newHerramienta.getUrlImage());
 
         Long categoriaId = newHerramienta.getCategoriaId();
 
-        if(categoriaId==null){
-            throw new IllegalArgumentException("La ID de la categoría es obligatoria");
+        if (categoriaId == null) {
+            throw new IllegalArgumentException("no hay id Categoria");
         }
-
         Categoria categoriaObtenida = categoriaRepository.findById(categoriaId)
-            .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con la id: " + categoriaId));
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada " + categoriaId));
         HerramienticaNueva.setCategoria(categoriaObtenida);
-        
-         if (newHerramienta.getMarca() != null ||
-            newHerramienta.getDescripcion()!= null ||
+
+        if (newHerramienta.getMarca() != null ||
+            newHerramienta.getDescripcion() != null ||
             newHerramienta.getModelo() != null ||
             newHerramienta.getPrecio_Diario() != null) {
 
@@ -76,14 +99,25 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
             detalles.setModelo(newHerramienta.getModelo());
             detalles.setPrecio_Diario(newHerramienta.getPrecio_Diario());
 
+            detalles.setHerramienta(HerramienticaNueva); 
             HerramienticaNueva.setDetalle(detalles);
         }
+     
+        if (newHerramienta.getFecha() != null) {
+            Inventario inventario = new Inventario();
+            inventario.setStock(newHerramienta.getStock());
+            inventario.setFecha(newHerramienta.getFecha());
+            inventario.setProveedorUsuario(proveedorUsuario);  
+            Inventario savedInventario = inventarioRepository.save(inventario); 
+                    
+            HerramienticaNueva.setInventario(savedInventario);
+        }
 
-        Herramienta savedHerramienta = herramientaRepository.save(HerramienticaNueva); 
+        Herramienta savedHerramienta = herramientaRepository.save(HerramienticaNueva);
 
-        return mapToResponseHerramienta(savedHerramienta);
-
+        return mapToResponseHerramienta(savedHerramienta);  
     }
+
     private ResponseHerramientas mapToResponseHerramienta(Herramienta herramienta) {
         ResponseHerramientas response = new ResponseHerramientas();
         response.setId(herramienta.getId());
@@ -97,10 +131,19 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
         if (herramienta.getDetalle() != null) {
             response.setMarca(herramienta.getDetalle().getMarca());
             response.setModelo(herramienta.getDetalle().getModelo());
-            response.setPrecio_Diario(herramienta.getDetalle().getPrecio_Diario()); 
+            response.setPrecio_Diario(herramienta.getDetalle().getPrecio_Diario());
             response.setDescripcion(herramienta.getDetalle().getDescripcion());
         }
+
+        if (herramienta.getInventario() !=null){
+            response.setStock(herramienta.getInventario().getStock());
+        }
+        else{
+            response.setStock(0);
+        }
+        
         return response;
+       
     }
 
     @Override

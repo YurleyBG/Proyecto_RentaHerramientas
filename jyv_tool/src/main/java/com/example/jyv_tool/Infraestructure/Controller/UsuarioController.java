@@ -21,7 +21,7 @@ import com.example.jyv_tool.Domain.Dto.Usuario.UsuarioRequest;
 import com.example.jyv_tool.Domain.Entity.Usuario;
 
 @RestController
-@RequestMapping(value="/Home" ,produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/Api" ,produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioController {
 
    

@@ -2,6 +2,7 @@ package com.example.jyv_tool.Domain.Dto.Herramienta;
 
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,12 +23,15 @@ public class ResponseHerramientas {
     private Long id;
   
     private String nombre;
-    private String UrlImage;
-
+    private String urlImage;
+    private String nombreProveedor;
     private Long categoriaId;
+    private Timestamp fecha;
+    private int stock ;
+    private String marca;
+    private String modelo;
+    private BigDecimal precio_Diario;
+    private String descripcion;
 
-    private String Marca;
-    private String Modelo;
-    private BigDecimal  Precio_Diario;
-    private String Descripcion;
+
 }
