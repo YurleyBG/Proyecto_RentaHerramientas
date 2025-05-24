@@ -13,5 +13,8 @@ public interface HerramientaService {
     boolean deleteHerramienta(Long id);
     ResponseHerramientas createNewHerramienta(HerramientaRequest newHerramienta );
     ResponseHerramientas UpdateHerramienta(Long id ,HerramientaRequest herramienta);
+    List<Herramienta> searchHerramientas(String search);
+    Herramienta findHerramientaById(Long id);
+    List<Herramienta> findHerramientasByCategoria(String category);
 
 }

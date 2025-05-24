@@ -34,12 +34,9 @@ public class SecurityConfig {
             .csrf(csrf->csrf.disable())
             .authorizeHttpRequests(authRequests->
                 authRequests
-                .requestMatchers("/Perfil").hasAnyAuthority("Usuario", "Administrador", "Proveedor")
-                .requestMatchers("/admin/**").hasAuthority("Administrador")
-                .requestMatchers("/proveedor/**").hasAuthority("Proveedor")
-                .requestMatchers("/Home","/login","/registrar","/PaginaPrincipal","/Reservas","/Pagos","/Factura","/Perfil").permitAll()
-                .requestMatchers("/favicon.ico","/css/**", "/js/**", "/img/**","/Api/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/Home","/auth/**","/login","/registrar","/PaginaPrincipal","/Pagos","/Factura","/favicon.ico","/css/**", "/js/**", "/img/**","/Api/**").permitAll()
+                .requestMatchers("/Perfil").hasAnyAuthority("Cliente", "Administrador", "Proveedor")
+                .requestMatchers("/PaginaPrincipal").hasAuthority("Cliente")
                 .anyRequest().authenticated()
                 )
                 
@@ -58,8 +55,8 @@ public class SecurityConfig {
         CorsConfiguration config =new CorsConfiguration();
 
         config.setAllowedOrigins(List.of("http://localhost:8080"));
-        config.setAllowedMethods(List.of("GET","POST","DELETE","PUT"));
-        config.setAllowedHeaders(List.of("*")); 
+        config.setAllowedMethods(List.of("GET","POST","DELETE","PUT","OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); 
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

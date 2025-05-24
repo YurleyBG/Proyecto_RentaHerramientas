@@ -14,7 +14,7 @@
 
                 <div class="navbar">
                     <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
-                    <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+                    <a class="icon2" th:href="@{/reservas}">📅 Reservaciones</a>
                     <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
                     <a class="icon4" th:href="@{perfil.html}">📄 Historial</a>
                     <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
@@ -47,13 +47,16 @@
            
         </div>
         <div class="buscador">
-            <input type="text" name="buscar" class="search" placeholder="   ¿Que estas buscando?">
+            <input type="text" name="buscar" class="search"  id="buscadorfiltro" placeholder="   ¿Que estas buscando?">
 
-            <strong class="filtrar"> Filtrar</strong>
-            <select name="" id="">
-                <option value=""></option>
-                <option value="">Categoria</option>
-                <option value="">Precio</option>
+            <strong class="filtrar"> Categorias </strong>
+            <select name="CategoriaFiltro" id="filtroC">
+                <option value="">Todas</option>
+                <option value="">Eléctricas</option>
+                <option value="">Manuales</option>
+                <option value="">Jardinería</option>
+                <option value="">Construcción</option>
+                <option value="">Medición</option>
             </select>
         </div>
        <div class="herramientas" id="cajitaPrinci"></div>

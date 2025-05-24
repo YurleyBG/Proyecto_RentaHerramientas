@@ -35,7 +35,6 @@ public class Herramienta {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    @JsonIgnore
     private Categoria categoria;
 
     @OneToMany(mappedBy = "herramienta")

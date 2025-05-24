@@ -17,8 +17,8 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Nombre;
-    private String Descripcion;
+    private String nombre;
+    private String descripcion;
 
     @OneToMany(mappedBy = "categoria")
     @JsonIgnore
@@ -28,11 +28,14 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(String Descripcion, String Nombre, Long id) {
-        this.Descripcion = Descripcion;
-        this.Nombre = Nombre;
+    
+    public Categoria(Long id, String nombre, String descripcion, List<Herramienta> herramientas) {
         this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.herramientas = herramientas;
     }
+
 
     public Long getId() {
         return id;
@@ -42,21 +45,27 @@ public class Categoria {
         this.id = id;
     }
 
+   
+
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
+
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
 
     public List<Herramienta> getHerramientas() {
         return herramientas;

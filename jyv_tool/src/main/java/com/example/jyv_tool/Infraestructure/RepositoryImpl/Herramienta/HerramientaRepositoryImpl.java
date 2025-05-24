@@ -161,6 +161,21 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
         return  mapToResponseHerramienta(updatedHerramienta);
     }
 
+    @Override
+    public List<Herramienta> searchHerramientas(String search) {
+        return herramientaRepository.findByNombreContainingIgnoreCase(search);
+    }
+
+    @Override
+    public Herramienta findHerramientaById(Long id) {
+        return herramientaRepository.findById(id).orElse(null); 
+    }
+
+    @Override
+    public List<Herramienta> findHerramientasByCategoria(String category) {
+        return herramientaRepository.findByCategoria_NombreIgnoreCase(category);
+    }
+
     
 
 }

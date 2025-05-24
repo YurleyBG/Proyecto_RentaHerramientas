@@ -1,16 +1,18 @@
 package com.example.jyv_tool.Auth;
 
+
+import  org.springframework.security.core.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import org.springframework.security.core.userdetails.UserDetails;
 import com.example.jyv_tool.Domain.Entity.Rol;
 import com.example.jyv_tool.Domain.Entity.Usuario;
 import com.example.jyv_tool.Infraestructure.Repository.Rol.RolRepository;
 import com.example.jyv_tool.Infraestructure.Repository.Usuario.UsuarioRepository;
-import com.example.jyv_tool.Jwt.jwtService;
+import com.example.jyv_tool.Jwt.JwtService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,13 +23,20 @@ public class AuthService {
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
     private final RolRepository rolRepository;
-    private final jwtService JwtService;
+    private final JwtService jwtService;
     private final AuthenticationManager authenticationManager; 
 
     public AuthResponse login( LoginRequest request){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),request.getPassword()));
-        UserDetails user = usuarioRepository.findByUsername(request.getUsername()).orElseThrow();
-        String token=JwtService.getToken(user);
+        
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        
+        UserDetails user = (UserDetails) authentication.getPrincipal();
+        String token = jwtService.getToken(user);
+
         return AuthResponse.builder()
         .token(token)
         .build();
@@ -58,7 +67,7 @@ public class AuthService {
 
         usuarioRepository.save(usuario);
         
-        String jwtToken = JwtService.getToken(usuario);
+        String jwtToken = jwtService.getToken(usuario);
         
         return AuthResponse.builder()
             .token(jwtToken)
