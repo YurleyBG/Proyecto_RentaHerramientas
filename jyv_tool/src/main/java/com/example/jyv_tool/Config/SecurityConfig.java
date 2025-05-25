@@ -37,7 +37,7 @@ public class SecurityConfig {
                 
                 .requestMatchers("/Api/**").permitAll()
                 .requestMatchers("/Home","/auth/**","/login","/registrar","/PaginaPrincipal","/Pagos","/Factura","/favicon.ico","/css/**",
-                 "/js/**", "/img/**").permitAll()
+                 "/js/**", "/img/**","/RegistroHerramientas","/admin_reporte","/admin_registrar","/admin_historial","/admin_herramienta","/admin_eliminar","/admin_devolucion").permitAll()
                 .requestMatchers("/Perfil").hasAnyAuthority("Cliente", "Administrador", "Proveedor")
                 .requestMatchers("/PaginaPrincipal").hasAuthority("Cliente")
                 .anyRequest().authenticated()
