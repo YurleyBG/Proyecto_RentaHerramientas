@@ -209,6 +209,7 @@ segun el rol. EL login se manejo con cookies para poder dar los permisos.
 ```
 
 y volver a comentar para que no se dupliquen las insert en cada ejecucion.
+
 +El data.sql que esta en templates contiene los inserts.
 
   
