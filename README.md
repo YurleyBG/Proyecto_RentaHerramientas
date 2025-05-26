@@ -1,4 +1,4 @@
-# JYV_TOOLS (Alquiler de Herramienta)
+# JYV_TOOLS (Alquiler de Herramientas)
 
 Es un aplicativo que permite la gestion de alquileres de herramienta y equipos de construcciones para 
 contratista, particulares y empresas  que requieren de esta maquinaria sin tener la necesidad de comprarlas.
@@ -6,7 +6,7 @@ contratista, particulares y empresas  que requieren de esta maquinaria sin tener
 ## TECNOLOGIAS UTILIZADAS
 
 * Spring boot(MVC)
-* Java 21
+* Java 
 * PostgreSQL
 * JWT
 * HTML(Thymeleaf)
@@ -15,13 +15,13 @@ contratista, particulares y empresas  que requieren de esta maquinaria sin tener
 
 ## Instrucciones para clonar
 
-para poder abrir el aplicatico en tu maquina local deberas clonar el repositorio desde el control de versiones github  o el de tu preferencia
+Para poder abrir el aplicativo en tu maquina local deberas clonar el repositorio desde el control de versiones github  o el de tu preferencia
 utilizabndo el siguiente comando 
 ```
 git clone  https://github.com/YurleyBG/Proyecto_SpringBootFinal.git
 ```
-despues de tener clonado  abrir en tu editor de codigo preferido , en este caso aplicaria a visual studio code 
-descargaremos las siguientes extensiones para poder ejecutar 
+despues de tener clonado , abrir en tu editor de codigo preferido , en este caso aplicaria a visual studio code 
+descargaremos las siguientes extensiones para poder ejecutar :
 ```
   1. Extension Pack for Java
   2. Spring Boot Dashboard
@@ -76,15 +76,40 @@ Estas dependencias se encuentran aplicadas en el pom.xml del archivo springboot:
 
 ```
 
-## Link de los endpoints
+## Estructura del proyecto:
 
-+ Usuario
-+ Reservas
-+ Pagos
-+ Herramientas
-+ facturas
+### Application: 
++ service: Aquí se implementaron las reglas y operaciones que definencomo actuara cada endpoint.
+  
+###  Auth:
+Tiene lo relacionado con el jwt y spring security.
+
+### Config: 
+Tiene las configuracion y authorizaciones para el sistema.
+
+###  Domain:
++ DTO: Response y Request
++ Entity: tiene todas la clases con sus repectivos atributos y relaciones.
+  
+###  Infraestructure:
++ Controllers : tiene todo el manejo o  endpoints de las apiRest.
++ Repository: interfaz definida para el acceso de datos de una entidad especifica.
++ Repository Impl: implementacion completa .
++ Util : contienes la excepciones personalizadas y globales
+
+###  JWT: 
+contiene todo lo relacionado con las filtraciones y el jwt service.
+
+###  Resource:
++ static:
+  	+ Css: contienes los estilos para las paginas.
+  	+ Js: contiene los javascripts para el consumo de apis.
+  	+ Img: contiene las imagenes locales.
++ Templates:
+  Aqui se encuentras todos los archivos html implementados que se imlementaron con thymeleaf.
 
 ## Configuración del application.properties
+
 0. Nombre de la aplicación Este nombre se usa para identificar la aplicación en entornos de monitoreo o registros.
 ```
     spring.application.name=jyv_tool
@@ -116,46 +141,73 @@ Estas dependencias se encuentran aplicadas en el pom.xml del archivo springboot:
 
 
 ##  Explicación de la autenticación y roles
-  ### Roles permitidos 
-    + Cliente
-    + Proveedpr
-    + Administrador
-    
-  ### PERMISOS PARA TODOS
-  
-    + bienvenida
-    + Login
-    + Registro
 
-  ### PERMISOS PARA CLIENTES
-  
-    + Pagina principal(herramientas disponibles)
-    + Reservas
-    + Pagos
-    + Historial
-    + perfil
-    
-   ### PERMISOS PARA PROVEEDORES
-   
-    + Pagina principal(herramientas)
-    + Gestionar reservas
-    + generar facturas
-    + Agrega y eliminar herramientas
-    + perfil
-    
-   ### PERMISOS PARA ADMINISTRADORES
+Se implemento el JWT(json web token) y spring security  para generar la autenticaciones y permisos.
 
-    + Pagina principal(clientes , proveedores)
-    + gestion de reportes
-    + modulo de supervision
-    + perfil
+### ROLES PERMITIDOS
++ Cliente
++ Proveedor
++ Administrador
 
-  El usuario  podra ver una vista de bienvenida que le dara las opciones de registro y login. 
-  podra registrarse segun su rol despues sera ridereccionado al apartado de login para acceder a la vista
-  segun el rol. EL login se manejo con cookies para poder dar los permisos.
+### PERMISOS PARA TODOS
+
++ bienvenida
++ Login
++ Registro
+
+### PERMISOS PARA CLIENTES
+
++ Pagina principal(herramientas disponibles)
++ Reservas
++ Pagos
++ Historial
++ perfil
+
+### PERMISOS PARA PROVEEDORES
+
++ Pagina principal(herramientas)
++ Gestionar reservas
++ generar facturas
++ Agrega y eliminar herramientas
++ perfil
+    
+### PERMISOS PARA ADMINISTRADORES
+
++ Pagina principal(clientes , proveedores)
++ gestion de reportes
++ modulo de supervision
++ perfil
+
+El usuario  podra ver una vista de bienvenida que le dara las opciones de registro y login. 
+podra registrarse segun su rol despues sera ridereccionado al apartado de login para acceder a la vista
+segun el rol. EL login se manejo con cookies para poder dar los permisos.
    
 
 ## Guía para ejecutar pruebas unitarias y de integración
+
+Estos son algunos de los EndPoints
+
+post: Puedes utilizar postman o el servidor de tu preferencia para una mejor experiencia  o solo utilizar directamente .
+
+* Filtrar por categoria
+ 
+http://localhost:8080/Api/herramienta?category=Electricas
+
++ Obtener usuarios
+  
+http://localhost:8080/Api/usuario
+
++ Registrar nuevos usuarios
+  
+http://localhost:8080/auth/registrar
+
++ Iniciar sesion
+  
+http://localhost:8080/auth/login
+
++ Obtener Herramientas
+
+http://localhost:8080/Api/herramienta
 
 ## Mas Informacion
 
