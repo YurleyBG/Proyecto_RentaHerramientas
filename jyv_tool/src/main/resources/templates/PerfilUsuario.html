@@ -9,29 +9,27 @@
     <div class="container">
         <div class="header">
 
-            <div class="logo"><img src="/img/image-removebg-preview.png" alt=""></div>
+            <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
 
             <div class="navbar">
-                <a class="icon1" href=""><img src="/img/herramienta-de-reparacion.png" alt=""> Herramientas</a>
-                <a class="icon2" href=""><img src="/img/grifo.png" alt="">Reservaciones</a>
-                <a class="icon3" href=""><img src="/img/billete-de-banco.png" alt="">Pagos</a>
-                <a class="icon4" href=""><img src="/img/historial-de-transacciones.png" alt="">Historial</a>
-                <a class="icon5" href=""><img src="/img/factura.png" alt=""> Facturas</a>
+                <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+                <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+                <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+                <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+                <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
             </div>
 
             <div class="notifi_User">
-                <a href="#" class="notificacion"><img th:src="@{\img\campanita.png}" alt=""></a>
-                
-            </div>
-            <div class="circle_users">
-                    <a th:href="@{/perfil}">
+                <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+                <a th:href="@{/Perfil}">
+                    <div class="circle_users">
                         <img src="/img/user.png">
-                    </a>
+                    </div>
+                </a>
+                
             </div>
 
         </div>
-
-        
         <div class="conten_Inferior">
             <div class="nombre_datos">
                 <p class="Nombre">Carlos Vargas</p>

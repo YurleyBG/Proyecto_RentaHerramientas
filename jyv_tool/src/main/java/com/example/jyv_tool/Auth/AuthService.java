@@ -40,7 +40,7 @@ public class AuthService {
         String role = user.getAuthorities().stream()
         .findFirst()
         .map(a -> a.getAuthority()) 
-        .orElse("UNKNOWN");
+        .orElse("desconocido");
 
         return AuthResponse.builder()
         .token(token)

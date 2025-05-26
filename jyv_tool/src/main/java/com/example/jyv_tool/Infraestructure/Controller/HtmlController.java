@@ -70,5 +70,9 @@ public class HtmlController {
     public String index16(Model model) {
         return "Historial"; 
     }
+    @GetMapping("/PrincipalProveedor")
+    public String index17(Model model) {
+        return "PrincipalProveedor"; 
+    }
     
 }

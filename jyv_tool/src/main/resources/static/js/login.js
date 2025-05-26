@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (loginData.role == 'Cliente') {
                         window.location.href = '/PaginaPrincipal';
                     } else if (loginData.role == 'Administrador') {
-                        window.location.href = '/admin_reporte'; 
+                        window.location.href = '/admin_devolucion'; 
                     } else if (loginData.role =='Proveedor') {
-                        window.location.href = '/RegistroHerramientas'; 
+                        window.location.href = '/PrincipalProveedor'; 
                     } else {
                         window.location.href = '/Home';
                     }

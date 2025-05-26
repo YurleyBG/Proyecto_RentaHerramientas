@@ -15,11 +15,12 @@ body{
     background-color: #ED7D31;
     display: flex;
     justify-content: space-between;
+    height: 5vw;
 }
 .logo img{
     margin-left: 20px;
-    width: 130px;
-    height: 70px;
+    width: 5vw;
+    height: 5vw;
 }
 .notifi_User{
     display: flex;
@@ -28,7 +29,7 @@ body{
     justify-content: space-around;
 }
 .notifi_User img{
-        width: 40px;
+    width: 40px;
 }
 .circle_users{
     background-color: antiquewhite;
@@ -39,7 +40,6 @@ body{
     align-items: center;
     display: flex;
 }
-
 
 .navbar{
     font-size: 25px;
@@ -53,9 +53,13 @@ body{
     width: 35px;
 }
 .navbar a{
-    margin-bottom: 20px;
+    font-size: 1.5vw;
+    margin-top: 1.2vw;
     text-decoration: none;
-    color: white;
+    color: rgb(252, 248, 248);
+}
+.navbar a:hover {
+    color: rgb(12, 12, 12);
 }
 
 
