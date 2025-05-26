@@ -196,6 +196,7 @@ segun el rol. EL login se manejo con cookies para poder dar los permisos.
 * Entrega: Get,Post,Patch
 * Devoluciones: Get,Post
 * Otras: Get
+El HTMLCONTROLLER contiene cada uno de los endpoints para poder acceder a los html.
 
 ## Guía para ejecutar pruebas unitarias y de integración
 
