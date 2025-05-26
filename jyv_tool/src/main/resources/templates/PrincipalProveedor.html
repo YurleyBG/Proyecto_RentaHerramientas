@@ -13,8 +13,8 @@
             <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
 
             <div class="navbar">
-                <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
-                <a class="icon2" th:href="@{/Reservas}">📅 Registrar herramienta</a>
+                <a class="icon1"th:href="@{/PrincipalProveedor}">🔧 Mis Herramientas</a>
+                <a class="icon2" th:href="@{/RegistroHerramientas}">📅 Registrar herramienta</a>
                 <a class="icon3" th:href="@{/Pagos}">💳 solicitudes</a>
                 <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
                 <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
@@ -42,11 +42,12 @@
         <div class="body">
             <div class="cuadro">
                 <img  class="ladrillos"th:src="@{/img/ladrillos.jpg}" alt="">
-                <img class="alquiler" th:src="@{/img/bienvenida.jpg}" alt="">
+                <img class="alquiler" th:src="@{/img/herramientas.webp}" alt="">
             </div>
            
         </div>
         <div class="buscador">
+            
             <input type="text" name="buscar" class="search"  id="buscadorfiltro" placeholder="   ¿Que estas buscando?">
 
             <strong class="filtrar"> Categorias </strong>
@@ -62,6 +63,5 @@
        <div class="herramientas" id="cajitaPrinci"></div>
     </div>
 </body>
-<script th:src="@{/js/herramientas.js}"></script>
 <script th:src="@{/js/cerrarSesion.js}"></script>
 </html>

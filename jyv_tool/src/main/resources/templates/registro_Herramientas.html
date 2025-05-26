@@ -6,8 +6,38 @@
     <link rel="stylesheet" th:href="@{/css/registro_Herramientas.css}">
 </head>
 <body>
+     <div class="header">
+        <div class="contain">
+
+            <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+            <div class="navbar">
+                <a class="icon1"th:href="@{/PrincipalProveedor}">🔧 Mis Herramientas</a>
+                <a class="icon2" th:href="@{/RegistroHerramientas}">📅 Registrar herramienta</a>
+                <a class="icon3" th:href="@{/Pagos}">💳 solicitudes</a>
+                <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+                <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
+            </div>
+
+            <div class="notifi_User">
+                <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+                <a th:href="@{/Perfil}">
+                    <div class="circle_users">
+                        <img src="/img/user.png">
+                    </div>
+                </a>
+                <label for="Checko">
+                    <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+                </label>
+            </div>
+        </div>
+    </div>
     <div class="contenSuper">
         <div class="bloque1Registro">
+             <input type="checkbox" name="check" id="Checko">
+            <div class="cerrarSesion">
+                <button  id="cerrar" type="submit">Cerrar sesion</button>
+            </div>
             <P><span>Registrar Herramientas</span></P>
             <div class="bloque2Registro">
                 <div class="bloque3Registro">
