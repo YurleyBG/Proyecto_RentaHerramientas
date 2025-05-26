@@ -34,15 +34,16 @@ public class SecurityConfig {
             .csrf(csrf->csrf.disable())
             .authorizeHttpRequests(authRequests->
                 authRequests
-                
                 .requestMatchers("/Api/**").permitAll()
-                .requestMatchers("/Home","/auth/**","/login","/registrar","/PaginaPrincipal","/Pagos","/Factura","/favicon.ico","/css/**",
-                 "/js/**", "/img/**","/RegistroHerramientas","/admin_reporte","/admin_registrar","/admin_historial","/admin_herramienta","/admin_eliminar","/admin_devolucion").permitAll()
-                .requestMatchers("/Perfil").hasAnyAuthority("Cliente", "Administrador", "Proveedor")
+                .requestMatchers("/Home","/auth/**","/loginVista","/registrar","/favicon.ico","/css/**","/js/**", "/img/**").permitAll()
+                .requestMatchers("/PaginaPrincipal","/Pagos","/Factura","/Reservas","/Historial").permitAll()
                 .requestMatchers("/PaginaPrincipal").hasAuthority("Cliente")
+                .requestMatchers("/RegistroHerramientas").permitAll()
+                .requestMatchers("/admin_reporte","/admin_registrar","/admin_historial","/admin_herramienta","/admin_eliminar","/admin_devolucion").permitAll()
+                .requestMatchers("/Perfil").hasAnyAuthority("Cliente", "Administrador", "Proveedor")
                 .anyRequest().authenticated()
                 )
-                
+            
             .sessionManagement(sessionManager -> 
                 sessionManager
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

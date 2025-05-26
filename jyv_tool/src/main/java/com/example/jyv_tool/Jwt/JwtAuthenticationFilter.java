@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String ruta = request.getServletPath();
 
-        if (ruta.equals("/Home") || ruta.equals("/login") ||ruta.equals("/registrar") ||
+        if (ruta.equals("/Home") || ruta.equals("/loginVista") ||ruta.equals("/registrar") ||
             ruta.equals("/Pagos") || ruta.equals("/Factura") ||
             ruta.equals("/favicon.ico") || ruta.startsWith("/css/") ||
             ruta.startsWith("/js/") || ruta.startsWith("/img/") ||

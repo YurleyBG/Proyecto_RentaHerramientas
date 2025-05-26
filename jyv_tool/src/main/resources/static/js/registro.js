@@ -33,7 +33,7 @@ userNew.addEventListener('submit', async (event) =>{
                 localStorage.setItem('jwtToken',daticos.token)
                 console.log("guardado");
                 alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-                window.location.href = '/login';
+                window.location.href = '/loginVista';
 
             }
         }

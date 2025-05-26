@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Reserva {
@@ -24,12 +23,12 @@ public class Reserva {
     private BigDecimal costo_total;
     private int cantidad;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Cliente",nullable = false)
     @JsonIgnore
     private Usuario users;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="id_Estado",nullable = false)
     @JsonIgnore
     private Estado estados;

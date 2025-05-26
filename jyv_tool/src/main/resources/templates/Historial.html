@@ -2,9 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>JYV_TOOLS</title>
-    <link rel="stylesheet" th:href="@{/css/herramienta.css}">
-
+    <link rel="stylesheet" th:href="@{/css/style_Historial.css}">
+    <title>JYV_TOOLS_Historial</title>
 </head>
 <body>
     <div class="header">
@@ -33,35 +32,13 @@
             </div>
         </div>
     </div>
-    <div class="container">
-       
+    <div class="Container">
         <input type="checkbox" name="check" id="Checko">
         <div class="cerrarSesion">
             <button  id="cerrar" type="submit">Cerrar sesion</button>
         </div>
-        <div class="body">
-            <div class="cuadro">
-                <img  class="ladrillos"th:src="@{/img/ladrillos.jpg}" alt="">
-                <img class="alquiler" th:src="@{/img/bienvenida.jpg}" alt="">
-            </div>
-           
-        </div>
-        <div class="buscador">
-            <input type="text" name="buscar" class="search"  id="buscadorfiltro" placeholder="   ¿Que estas buscando?">
-
-            <strong class="filtrar"> Categorias </strong>
-            <select name="CategoriaFiltro" id="filtroC">
-                <option value="">Todas</option>
-                <option value="">Electricas</option>
-                <option value="">Manuales</option>
-                <option value="">Jardineria</option>
-                <option value="">Construccion</option>
-                <option value="">Medicion</option>
-            </select>
-        </div>
-       <div class="herramientas" id="cajitaPrinci"></div>
     </div>
+    
 </body>
-<script th:src="@{/js/herramientas.js}"></script>
 <script th:src="@{/js/cerrarSesion.js}"></script>
 </html>

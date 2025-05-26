@@ -6,24 +6,38 @@
   <link rel="stylesheet" th:href="@{/css/FacturaStyle.css}">
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="img/logo_JYV_TOOLS.png" alt="JVV Tools">
-    </div>
-    <nav>
-      <a href="#">🔧 Herramientas</a>
-      <a href="#">📅 Reservaciones</a>
-      <a href="#">💳 Pagos</a>
-      <a href="#">📄 Historial</a>
-      <a href="#"><u>🧾 Facturas</u></a>
-    </nav>
-    <div class="perfil">
-      <span>🔔</span>
-      <img src="img/usuario.png" alt="Usuario" style="width: 32px; border-radius: 50%;">
-    </div>
-  </header>
+  <div class="header">
+    <div class="contain">
 
+      <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+      <div class="navbar">
+        <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+        <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+        <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+        <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+        <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
+      </div>
+
+      <div class="notifi_User">
+        <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+        <a th:href="@{/Perfil}">
+            <div class="circle_users">
+                <img src="/img/user.png">
+            </div>
+        </a>
+        <label for="Checko">
+            <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+        </label>
+    
+      </div>
+    </div>
+  </div>
   <div class="facturas-container">
+    <input type="checkbox" name="check" id="Checko">
+    <div class="cerrarSesion">
+        <button  id="cerrar" type="submit">Cerrar sesion</button>
+    </div>
     <h2>Facturas</h2>
 
     <div class="factura">
@@ -52,4 +66,5 @@
   </div>
 
 </body>
+<script th:src="@{/js/cerrarSesion.js}"></script>
 </html>

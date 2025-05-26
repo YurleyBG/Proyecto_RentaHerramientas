@@ -9,24 +9,39 @@
 
 <body>
 
-  <header class="barra_navegacion">
-    <div class="logo-container">
-      <img src="img/logo_JYV_TOOLS.png" alt="Logo" class="logo-navbar">
+  <div class="header">
+    <div class="contain">
+
+      <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+        <div class="navbar">
+          <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+          <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+          <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+          <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+          <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
+        </div>
+
+        <div class="notifi_User">
+          <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+          <a th:href="@{/Perfil}">
+              <div class="circle_users">
+                  <img src="/img/user.png">
+              </div>
+          </a>
+          <label for="Checko">
+              <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+          </label>
+        </div>
+      </div>
     </div>
-    <nav class="navegacion-links">
-      <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
-      <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
-      <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
-      <a class="icon4" th:href="@{perfil.html}">📄 Historial</a>
-      <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
-    </nav>
-    <div class="user-icons">
-      <i class="fas fa-bell"></i>
-      <img src="img/icono_usuario.png" alt="Usuario" class="avatar">
-    </div>
-  </header>
+  </div>
 
   <main class="contenido">
+    <input type="checkbox" name="check" id="Checko">
+    <div class="cerrarSesion">
+        <button  id="cerrar" type="submit">Cerrar sesion</button>
+    </div>
     <h1>Reservaciones</h1>
     <div class="resumen">
       <div class="reserva">
@@ -101,36 +116,22 @@
 
 
     <div class="botones">
-      <button class="btn btn-pagar">Ir a pagar <a href="index5_pagos.html"></a></button>
-      <button class="btn btn-descargar">Descargar Factura</button>
+      <a th:href="@{/Pagos}"> <button class="btn btn-pagar">Ir a pagar </button></a>
+     
     </div>
 
     <div class="facturas-container">
-    <h2>Facturas</h2>
+      <h2>Herramientas</h2>
 
-    <div class="factura">
-      <p><strong>Factura #001</strong></p>
-      <p><strong>Fecha:</strong> 16-05-2025</p>
-      <p><strong>Herramientas:</strong> Pala (x2), Pica (x2)</p>
-      <p><strong>Total:</strong> $124.000</p>
-      <button class="descargar-btn">Descargar PDF</button>
+      <div class="factura">
+        <p><strong>Factura #001</strong></p>
+        <p><strong>Fecha:</strong> 16-05-2025</p>
+        <p><strong>Herramientas:</strong> Pala (x2), Pica (x2)</p>
+        <p><strong>Total:</strong> $124.000</p>
+        <button class="descargar-btn">Descargar PDF</button>
+      </div>
     </div>
 
-    <div class="factura">
-      <p><strong>Factura #002</strong></p>
-      <p><strong>Fecha:</strong> 02-05-2025</p>
-      <p><strong>Herramientas:</strong> Taladro (x1)</p>
-      <p><strong>Total:</strong> $35.000</p>
-      <button class="descargar-btn">Descargar PDF</button>
-    </div>
-
-    <div class="factura">
-      <p><strong>Factura #003</strong></p>
-      <p><strong>Fecha:</strong> 20-04-2025</p>
-      <p><strong>Herramientas:</strong> Martillo (x3)</p>
-      <p><strong>Total:</strong> $18.000</p>
-      <button class="descargar-btn">Descargar PDF</button>
-    </div>
   </main>
 
   <script>
@@ -155,10 +156,12 @@
       input.addEventListener('input', actualizarTotales);
     });
 
-    actualizarTotales(); // ejecutar al cargar
+    actualizarTotales();
   </script>
 
 
 </body>
+<script th:src="@{/js/cerrarSesion.js}"></script>
+<script  src="/js/reserva.js"></script>
 
 </html>

@@ -1,10 +1,9 @@
 const url = "http://localhost:8080/Api/herramienta";
-
 const buscador = document.getElementById('buscadorfiltro');
 const contenedor = document.getElementById('cajitaPrinci');
 
 async function CargarHerramientas(buscar = "") {
-    contenedor.innerHTML = '<h2>Cargando herramientas...</h2>';
+    contenedor.innerHTML = '<h2 class="text-center"> Cargando herramientas...</h2>';
 
     let finalUrl = new URL(url);
 
@@ -21,18 +20,18 @@ async function CargarHerramientas(buscar = "") {
         }
 
         const data = await response.json();
-        console.log("Datos recibidos del servidor:", data);
+        console.log(data);
 
         contenedor.innerHTML = '';
 
         if (data.length === 0) {
-            contenedor.innerHTML = '<h2 class="text-center text-gray-600">No se encontraron herramientas </h2>';
+            contenedor.innerHTML = '<h2 class="text-center">No se encontraron herramientas </h2>';
             return;
         }
 
         data.forEach(element => {
-            const toolCard = document.createElement('div');
-            toolCard.className = 'herramientascaja';
+            const herraCard = document.createElement('div');
+            herraCard.className = 'herramientascaja';
 
             const imgContainer = document.createElement('div');
             imgContainer.className = 'cajaimg';
@@ -49,10 +48,14 @@ async function CargarHerramientas(buscar = "") {
                 <br>Marca: ${element.detalle?.marca || 'N/A'}
                 <br>Precio: $${element.detalle?.precio_Diario ? element.detalle.precio_Diario.toFixed(2) : 'N/A'}
             `;
+            const botonReserva= document.createElement("button");
+            botonReserva.className='btnreserva';
+            botonReserva.innerHTML = '+';
 
-            toolCard.appendChild(imgContainer);
-            toolCard.appendChild(TextoContainer);
-            contenedor.appendChild(toolCard);
+            herraCard.appendChild(imgContainer);
+            TextoContainer.appendChild(botonReserva)
+            herraCard.appendChild(TextoContainer);
+            contenedor.appendChild(herraCard);
         });
 
     } catch (error) {

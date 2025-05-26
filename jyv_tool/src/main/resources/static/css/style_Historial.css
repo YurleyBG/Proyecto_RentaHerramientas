@@ -7,6 +7,7 @@ body {
     margin: 0;
     background-color: #f4f4f4;
 }
+
 .header{
     width: 100vw;
     background-color: #ED7D31;
@@ -121,55 +122,4 @@ body {
     display: flex;
 
 }
-.pago-container {
-    max-width: 600px;
-    margin: 40px auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
 
-.pago-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 26px;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-.total {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.btn-pagar {
-    margin-top: 30px;
-    width: 100%;
-    background-color: #e67319;
-    color: white;
-    border: none;
-    padding: 14px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-pagar:hover {
-    background-color: #cc5b12;
-}

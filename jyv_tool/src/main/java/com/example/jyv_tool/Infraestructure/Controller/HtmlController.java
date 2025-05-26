@@ -10,7 +10,7 @@ public class HtmlController {
     public String index(Model model) {
         return "bienvenida"; 
     }
-    @GetMapping("/login")
+    @GetMapping("/loginVista")
     public String index2(Model model) {
         return "Inicio_sesion"; 
     }
@@ -65,6 +65,10 @@ public class HtmlController {
     @GetMapping("/admin_devolucion")
     public String index15(Model model) {
         return "admin_devolucion"; 
+    }
+    @GetMapping("/Historial")
+    public String index16(Model model) {
+        return "Historial"; 
     }
     
 }

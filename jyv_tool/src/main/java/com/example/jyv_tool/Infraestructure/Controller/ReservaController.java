@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,16 +35,6 @@ public class ReservaController {
         List<Reserva> ReserveResult= reservaservice.findAllReserve();
         return ReserveResult;
     }
-    @DeleteMapping("/reserva/{id}")
-    public ResponseEntity<?> DeleteUser(@PathVariable Long id){
-
-        boolean deleteuser= reservaservice.deleteReserve(id);
-        if (deleteuser) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
-    }
     @PostMapping("/reserva")
     public ResponseEntity<ResponseReserve> createNewReserve(@RequestBody ReserveRequest newReserve) {
         return new ResponseEntity<>(
@@ -53,15 +42,11 @@ public class ReservaController {
             HttpStatus.valueOf(200)
         );
     }
-
     @PatchMapping("/reserva/{id}")
     public ResponseEntity<ResponseReserve> UpdateReserve(@PathVariable Long id,@RequestBody ReserveRequest Reserve ){
 
         return ResponseEntity.ok().body(reservaservice.UpdateReserve(id,Reserve));
     }
-
-
-    
 
 
 }

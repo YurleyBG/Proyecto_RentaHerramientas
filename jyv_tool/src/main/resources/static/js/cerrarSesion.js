@@ -6,7 +6,7 @@ if(cerrar){
         event.preventDefault();
         if(confirm("Desea finalizar la sesion?")){
             localStorage.removeItem('jwt_token');
-            window.location.href = '/login';
+            window.location.href = '/loginVista';
         }
     });
 }

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 console.log("holaaa")
-                const loginResponse = await fetch('http://localhost:8080/login', {
+                const loginResponse = await fetch('/auth/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

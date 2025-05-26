@@ -1,7 +1,6 @@
 package com.example.jyv_tool.Infraestructure.RepositoryImpl.Reserva;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -42,16 +41,6 @@ public class ReservaRepositoryImpl implements ReservaService {
     public List<Reserva> findAllReserve() {
         return repositoryreserva.findAll();
     
-    }
-
-    @Override
-    public boolean deleteReserve(Long id) {
-        Optional<Reserva> reserveRemove =repositoryreserva.findById(id);
-        if (reserveRemove.isPresent()) {
-            repositoryreserva.deleteById(id);
-            return true;
-        } 
-        return false;
     }
 
     @Override
