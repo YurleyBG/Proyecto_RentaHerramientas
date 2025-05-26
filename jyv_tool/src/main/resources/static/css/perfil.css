@@ -1,0 +1,130 @@
+@font-face {
+    font-family: letra1;
+    src: url(/TT\ Interphases\ Pro\ Trial\ DemiBold.ttf);
+}
+@font-face {
+    font-family: letra2;
+    src: url(/TT\ Interphases\ Pro\ Mono\ Trial\ Regular.ttf);
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: letra1;
+}
+.header{
+    background-color: #ED7D31;
+    display: flex;
+    justify-content: space-between;
+    height: 5vw;
+}
+.logo img{
+    margin-left: 20px;
+    width: 5vw;
+    height: 5vw;
+}
+.notifi_User{
+    display: flex;
+    width: 180px;
+    align-items: center;
+    justify-content: space-around;
+}
+.notifi_User img{
+    width: 40px;
+}
+.circle_users{
+    background-color: antiquewhite;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.navbar{
+    font-size: 25px;
+    display: flex;
+    margin-top: 5px;
+    width: 60em;
+    justify-content: space-around;
+}
+.navbar img{
+    margin-top: 13px;
+    width: 35px;
+}
+.navbar a{
+    font-size: 1.5vw;
+    margin-top: 1.2vw;
+    text-decoration: none;
+    color: rgb(252, 248, 248);
+}
+.navbar a:hover {
+    color: rgb(12, 12, 12);
+}
+
+
+
+.conten_Inferior{
+    display: flex;
+    justify-content: space-around;
+}
+.Nombre{
+    font-size: 100px;
+}
+.datos{
+    background-color: #EBEBEB;
+    width: 40em;
+    height: 25em;
+    border-radius: 10px;
+}
+.datos_posicion{
+    padding-left: 1.7em;
+    padding-top: 0.1em;
+    
+}
+.datos p{
+    font-size: 30px;
+}
+.datos span{
+    font-family: letra2;
+}
+
+
+.foto_Bottom{
+    
+    gap: 1em;
+}
+.foto{
+    margin: 7em;
+    background-color: beige;
+    width: 27em;
+    height: 27em;
+    border-radius: 20em;
+}
+.botones{
+    display: flex;
+    justify-content: space-around;
+}
+.botones a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5em;
+}
+.boton_Eli_Cuen{
+    background-color: #ED7D31;
+    width: 14em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.Boton_Cerrar_Cuen{
+    background-color: #ED7D31;
+    width: 14em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}

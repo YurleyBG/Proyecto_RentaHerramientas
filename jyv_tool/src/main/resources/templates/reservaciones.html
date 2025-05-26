@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/style_reservaciones.css}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="contain">
+
+      <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+        <div class="navbar">
+          <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+          <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+          <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+          <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+          <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
+        </div>
+
+        <div class="notifi_User">
+          <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+          <a th:href="@{/Perfil}">
+              <div class="circle_users">
+                  <img src="/img/user.png">
+              </div>
+          </a>
+          <label for="Checko">
+              <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="contenido">
+    <input type="checkbox" name="check" id="Checko">
+    <div class="cerrarSesion">
+        <button  id="cerrar" type="submit">Cerrar sesion</button>
+    </div>
+    <h1>Reservaciones</h1>
+    <div class="resumen">
+      <div class="reserva">
+        <p><strong>Herramienta 1</strong><br> Pala</p>
+
+        <label><strong>Fecha Inicio</strong><br>
+          <input type="date" value="2025-05-13">
+        </label>
+
+        <label><strong>Fecha Devolución</strong><br>
+          <input type="date" value="">
+        </label>
+
+        <label><strong>Cantidad</strong><br>
+          <input type="number" class="cantidad" value="0" min="1">
+        </label>
+
+        <label><strong>Días</strong><br>
+          <input type="number" class="dias" value="0" min="1">
+        </label>
+
+        <label><strong>Precio Día</strong><br>
+          <input type="number" class="precio-dia" value="6000" min="0">
+        </label>
+
+        <p><strong>Precio Total</strong><br>
+          $ <span class="precio-total">0</span>
+        </p>
+      </div>
+
+      <div class="reserva">
+        <p><strong>Herramienta 2</strong><br> Pica</p>
+
+        <label><strong>Fecha Inicio</strong><br>
+          <input type="date" value="2025-05-13">
+        </label>
+
+        <label><strong>Fecha Devolución</strong><br>
+          <input type="date" value="">
+        </label>
+
+        <label><strong>Cantidad</strong><br>
+          <input type="number" class="cantidad" value="0" min="1">
+        </label>
+
+        <label><strong>Días</strong><br>
+          <input type="number" class="dias" value="0" min="1">
+        </label>
+
+        <label><strong>Precio Día</strong><br>
+          <input type="number" class="precio-dia" value="5000" min="0">
+        </label>
+
+        <p><strong>Precio Total</strong><br>
+          $ <span class="precio-total">0</span>
+        </p>
+      </div>
+
+      <div class="pago-final">
+        <label><strong>Forma de Pago</strong><br>
+          <select id="forma-pago">
+            <option value="tarjeta">Tarjeta de crédito</option>
+            <option value="pse">PSE</option>
+          </select>
+        </label>
+
+        <p><strong>Total Pagar</strong><br>
+          $ <span id="total-pagar">0</span>
+        </p>
+      </div>
+    </div>
+
+
+    <div class="botones">
+      <a th:href="@{/Pagos}"> <button class="btn btn-pagar">Ir a pagar </button></a>
+     
+    </div>
+
+    <div class="facturas-container">
+      <h2>Herramientas</h2>
+
+      <div class="factura">
+        <p><strong>Factura #001</strong></p>
+        <p><strong>Fecha:</strong> 16-05-2025</p>
+        <p><strong>Herramientas:</strong> Pala (x2), Pica (x2)</p>
+        <p><strong>Total:</strong> $124.000</p>
+        <button class="descargar-btn">Descargar PDF</button>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function actualizarTotales() {
+      const reservas = document.querySelectorAll('.reserva');
+      let totalPagar = 0;
+
+      reservas.forEach(reserva => {
+        const cantidad = parseInt(reserva.querySelector('.cantidad').value) || 0;
+        const dias = parseInt(reserva.querySelector('.dias').value) || 0;
+        const precioDia = parseInt(reserva.querySelector('.precio-dia').value) || 0;
+
+        const total = cantidad * dias * precioDia;
+        reserva.querySelector('.precio-total').innerText = total.toLocaleString();
+        totalPagar += total;
+      });
+
+      document.getElementById('total-pagar').innerText = totalPagar.toLocaleString();
+    }
+
+    document.querySelectorAll('.cantidad, .dias, .precio-dia').forEach(input => {
+      input.addEventListener('input', actualizarTotales);
+    });
+
+    actualizarTotales();
+  </script>
+
+
+</body>
+<script th:src="@{/js/cerrarSesion.js}"></script>
+<script  src="/js/reserva.js"></script>
+
+</html>

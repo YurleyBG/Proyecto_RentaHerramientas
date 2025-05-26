@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/style_bienvenida.css}">
+</head>
+<body>
+
+  <div class="caja_naranja">
+    <img class="casco" th:src="@{/img/Casco.png}"alt="Casco">
+    <img class="logo" th:src="@{/img/logo (2).png}" alt="Logo">
+  </div>
+
+  <div class="container">
+    <div class="form-box">
+      <h2>Bienvenido</h2>
+      <p class="mensaje">¿Qué deseas hacer?</p>
+      <div id="sinLogin" class="botones-area">
+        <a th:href="@{/loginVista}" class="btn-opcion">Iniciar Sesión</a>
+        <a  th:href="@{/registrar}" class="btn-opcion">Registrarse</a>
+       
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>JYV_TOOLS</title>
+  <link rel="stylesheet" th:href="@{/css/style_admin_herramienta.css}">
+</head>
+
+<body>
+ <div class="header">
+    <div class="contain">
+
+      <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+        <div class="navbar">
+          <a class="icon1"th:href="@{/admin_herramienta}">👤 Usuarios</a>
+          <a class="icon2" th:href="@{/admin_registrar}">📅 Registrar</a>
+          <a class="icon3" th:href="@{/admin_eliminar}">💳 Eliminar</a>
+          <a class="icon4" th:href="@{/admin_reporte}">📄 Reporte</a>
+          <a class="icon5" th:href="@{/admin_devolucion}"> 👜 Devolución</a>
+          <a  class="icon6" th:href="@{/admin_historial}">🧾 Historial</a>
+        </div>
+
+        <div class="notifi_User">
+          <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+          <a th:href="@{/Perfil}">
+              <div class="circle_users">
+                  <img src="/img/user.png">
+              </div>
+          </a>
+          <label for="Checko">
+              <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="main">
+    <input type="checkbox" name="check" id="Checko">
+    <div class="cerrarSesion">
+        <button  id="cerrar" type="submit">Cerrar sesion</button>
+    </div>
+    <h2>Herramientas Disponibles</h2>
+    <div class="search-bar">
+      <input type="text" placeholder="¿Qué estás buscando?">
+      <button>Filtrar</button>
+    </div>
+    <div class="card">
+      <img src="img/fondo_herramientas.jpeg" alt="Herramienta 1" width="100">
+      <p><strong>Herramienta 1</strong></p>
+      <p>$3000 / Día</p>
+      <button class="btn">Reservar</button>
+    </div>
+  </div>
+</body>
+<script th:src="@{/js/cerrarSesion.js}"></script>
+</html>

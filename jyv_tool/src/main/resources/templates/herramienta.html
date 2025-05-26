@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>JYV_TOOLS</title>
+    <link rel="stylesheet" th:href="@{/css/herramienta.css}">
+
+</head>
+<body>
+    <div class="header">
+        <div class="contain">
+
+            <div class="logo"><img th:src="@{/img/logo (2).png}" alt=""></div>
+
+            <div class="navbar">
+                <a class="icon1"th:href="@{/PaginaPrincipal}">🔧 Herramientas</a>
+                <a class="icon2" th:href="@{/Reservas}">📅 Reservaciones</a>
+                <a class="icon3" th:href="@{/Pagos}">💳 Pagos</a>
+                <a class="icon4" th:href="@{/Historial}">📄 Historial</a>
+                <a class="icon5" th:href="@{/Factura}">🧾 Facturas</a>
+            </div>
+
+            <div class="notifi_User">
+                <img  class="notificacion" th:src="@{\img\campanita.png}" alt="">
+                <a th:href="@{/Perfil}">
+                    <div class="circle_users">
+                        <img src="/img/user.png">
+                    </div>
+                </a>
+                <label for="Checko">
+                    <img  class="notificacion" th:src="@{\img\Menu (2).png}" alt="">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+       
+        <input type="checkbox" name="check" id="Checko">
+        <div class="cerrarSesion">
+            <button  id="cerrar" type="submit">Cerrar sesion</button>
+        </div>
+        <div class="body">
+            <div class="cuadro">
+                <img  class="ladrillos"th:src="@{/img/ladrillos.jpg}" alt="">
+                <img class="alquiler" th:src="@{/img/bienvenida.jpg}" alt="">
+            </div>
+           
+        </div>
+        <div class="buscador">
+            <input type="text" name="buscar" class="search"  id="buscadorfiltro" placeholder="   ¿Que estas buscando?">
+
+            <strong class="filtrar"> Categorias </strong>
+            <select name="CategoriaFiltro" id="filtroC">
+                <option value="">Todas</option>
+                <option value="">Electricas</option>
+                <option value="">Manuales</option>
+                <option value="">Jardineria</option>
+                <option value="">Construccion</option>
+                <option value="">Medicion</option>
+            </select>
+        </div>
+       <div class="herramientas" id="cajitaPrinci"></div>
+    </div>
+</body>
+<script th:src="@{/js/herramientas.js}"></script>
+<script th:src="@{/js/cerrarSesion.js}"></script>
+</html>
