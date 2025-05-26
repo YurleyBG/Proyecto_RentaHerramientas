@@ -37,8 +37,14 @@ public class AuthService {
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String token = jwtService.getToken(user);
 
+        String role = user.getAuthorities().stream()
+        .findFirst()
+        .map(a -> a.getAuthority()) 
+        .orElse("UNKNOWN");
+
         return AuthResponse.builder()
         .token(token)
+        .role(role)
         .build();
 
     }

@@ -1,13 +1,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const loginButton = document.getElementById('Iniciar');
+    const loginformu = document.getElementById('login');
  
-    if (loginButton) {
+    if (loginformu) {
       
        
-        loginButton.addEventListener('click', async () => {
+        loginformu.addEventListener('submit', async (event) => {
 
+            event.preventDefault();
          
             const username = document.getElementById("usuario").value;
             const password = document.getElementById("contraseña").value;
@@ -41,9 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log(loginData.username)
                     console.log(loginData.token)
                     document.cookie = `jwtToken=${loginData.token}; path=/; SameSite=Strict; max-age=${3600 * 24}`;
-
+                    console.log(loginData.role)
                     alert('Sesión iniciada correctamente');
-                    window.location.href = '/PaginaPrincipal';
+                    if (loginData.role == 'Cliente') {
+                        window.location.href = '/PaginaPrincipal';
+                    } else if (loginData.role == 'Administrador') {
+                        window.location.href = '/admin_reporte'; 
+                    } else if (loginData.role =='Proveedor') {
+                        window.location.href = '/RegistroHerramientas'; 
+                    } else {
+                        window.location.href = '/Home';
+                    }
 
                 } else {
                     alert('No se recibió un token válido del servidor');

@@ -36,10 +36,9 @@ public class SecurityConfig {
                 authRequests
                 .requestMatchers("/Api/**").permitAll()
                 .requestMatchers("/Home","/auth/**","/loginVista","/registrar","/favicon.ico","/css/**","/js/**", "/img/**").permitAll()
-                .requestMatchers("/PaginaPrincipal","/Pagos","/Factura","/Reservas","/Historial").permitAll()
-                .requestMatchers("/PaginaPrincipal").hasAuthority("Cliente")
-                .requestMatchers("/RegistroHerramientas").permitAll()
-                .requestMatchers("/admin_reporte","/admin_registrar","/admin_historial","/admin_herramienta","/admin_eliminar","/admin_devolucion").permitAll()
+                .requestMatchers("/PaginaPrincipal","/Pagos","/Factura","/Reservas","/Historial").hasAuthority("Cliente")
+                .requestMatchers("/RegistroHerramientas").hasAuthority("Proveedor")
+                .requestMatchers("/admin_reporte","/admin_registrar","/admin_historial","/admin_herramienta","/admin_eliminar","/admin_devolucion").hasAuthority("Administrador")
                 .requestMatchers("/Perfil").hasAnyAuthority("Cliente", "Administrador", "Proveedor")
                 .anyRequest().authenticated()
                 )
