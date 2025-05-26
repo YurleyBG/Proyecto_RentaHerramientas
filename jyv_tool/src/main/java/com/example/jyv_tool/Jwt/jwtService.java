@@ -33,7 +33,9 @@ public class JwtService {
             .expiration(new Date(System.currentTimeMillis()+1000*60*24))
             .signWith(getKey(), SignatureAlgorithm.HS256) 
             .compact();
+
     }
+    
     private Key getKey() {
         byte[] keyBites = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBites);
