@@ -107,6 +107,7 @@ contiene todo lo relacionado con las filtraciones y el jwt service.
   	+ Img: contiene las imagenes locales.
 + Templates:
   Aqui se encuentras todos los archivos html implementados que se imlementaron con thymeleaf.
+  
 
 ## Configuración del application.properties
 
@@ -181,7 +182,20 @@ Se implemento el JWT(json web token) y spring security  para generar la autentic
 El usuario  podra ver una vista de bienvenida que le dara las opciones de registro y login. 
 podra registrarse segun su rol despues sera ridereccionado al apartado de login para acceder a la vista
 segun el rol. EL login se manejo con cookies para poder dar los permisos.
-   
+
+## ENDPOINTS DE LAS ENTIDADES(CRUD)
+
+* Alquiler: Delete,Get,Post,Patch
+* Usuario: Delete,Get,Post,Patch
+* Reserva: Delete,Get,Post,Patch
+* Pago: Delete,Get,Post,Patch
+* Multas: Delete,Get,Post,Patch
+* Inventario: Delete,Get,Post,Patch
+* Herramientas: Delete,Get,Post,Patch
+* Factura: Delete,Get,Post,Patch
+* Entrega: Delete,Get,Post,Patch
+* Devoluciones: Delete,Get,Post,Patch
+* Otras: Get
 
 ## Guía para ejecutar pruebas unitarias y de integración
 
@@ -208,6 +222,10 @@ http://localhost:8080/auth/login
 + Obtener Herramientas
 
 http://localhost:8080/Api/herramienta
+
++ Obtener Reservas
+  
+http://localhost:8080/Api/reserva
 
 ## Mas Informacion
 
