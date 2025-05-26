@@ -187,14 +187,14 @@ segun el rol. EL login se manejo con cookies para poder dar los permisos.
 
 * Alquiler: Delete,Get,Post,Patch
 * Usuario: Delete,Get,Post,Patch
-* Reserva: Delete,Get,Post,Patch
-* Pago: Delete,Get,Post,Patch
-* Multas: Delete,Get,Post,Patch
-* Inventario: Delete,Get,Post,Patch
+* Reserva: Get,Post,Patch
+* Pago: Get,Post,Patch
+* Multas: Get,Post,Patch
+* Inventario: Get,Patch
 * Herramientas: Delete,Get,Post,Patch
-* Factura: Delete,Get,Post,Patch
-* Entrega: Delete,Get,Post,Patch
-* Devoluciones: Delete,Get,Post,Patch
+* Factura: Delete,Get
+* Entrega: Get,Post,Patch
+* Devoluciones: Get,Post
 * Otras: Get
 
 ## Guía para ejecutar pruebas unitarias y de integración
