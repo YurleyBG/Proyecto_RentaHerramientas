@@ -212,6 +212,8 @@ y volver a comentar para que no se dupliquen las insert en cada ejecucion.
 
 + El data.sql que esta en templates contiene los inserts.
 
++ Se implemento el manejo de CORS para poder hacer el consumo de las apis.
+
   
 
 ## Guía para ejecutar pruebas unitarias y de integración
