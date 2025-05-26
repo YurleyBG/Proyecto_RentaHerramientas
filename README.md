@@ -196,7 +196,20 @@ segun el rol. EL login se manejo con cookies para poder dar los permisos.
 * Entrega: Get,Post,Patch
 * Devoluciones: Get,Post
 * Otras: Get
-El HTMLCONTROLLER contiene cada uno de los endpoints para poder acceder a los html.
+
+## DATOS IMPORTANTES
++ El HTMLCONTROLLER contiene cada uno de los endpoints para poder acceder a los html.
++ Para insertar los datos debes descomentar lo siguiente esta en application.propierities:
+```
+
+##spring.jpa.hibernate.ddl-auto=update
+##spring.sql.init.mode=always
+
+
+```
+
+y volver a comentar para que no se dupliquen las insert en cada ejecucion,
+  
 
 ## Guía para ejecutar pruebas unitarias y de integración
 
