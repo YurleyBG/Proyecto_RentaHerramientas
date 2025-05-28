@@ -14,5 +14,6 @@ public interface HerramientaRepository extends JpaRepository<Herramienta,Long>{
     Optional<Herramienta>findByNombre(String nombre);
     List<Herramienta> findByNombreContainingIgnoreCase(String searchTerm);
     List<Herramienta> findByCategoria_NombreIgnoreCase(String category);
+    List<Herramienta> findByInventario_StockGreaterThan(Integer stock);
 
 }

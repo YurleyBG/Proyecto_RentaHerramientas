@@ -48,6 +48,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String token;
         String jwtCookie = null;
 
+        final String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            jwtCookie = authHeader.substring(7); 
+            System.out.println("DEBUG: JWT obtenido del encabezado Authorization: " + jwtCookie);
+        }
+
         if (request.getCookies() != null) {
             for (Cookie cookie : request.getCookies()) {
                 if ("jwtToken".equals(cookie.getName())) {

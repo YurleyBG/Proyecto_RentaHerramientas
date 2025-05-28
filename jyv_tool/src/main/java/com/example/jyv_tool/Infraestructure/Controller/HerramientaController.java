@@ -32,8 +32,11 @@ public class HerramientaController {
     }
 
     @GetMapping("/herramienta")
-    public List<Herramienta> findAll( @RequestParam(required = false) String search , @RequestParam(required = false) String category) {
+    public List<Herramienta> findAll( @RequestParam(required = false) String search , @RequestParam(required = false) String category,@RequestParam(required = false) Boolean available) {
 
+        if (available != null && available) { 
+            return herramientaService.findHerramientasDisponibles();
+        }
         if (search != null && !search.isEmpty() && category != null && !category.isEmpty() && !category.equalsIgnoreCase("Todas")) {
             
             return herramientaService.searchHerramientas(search);

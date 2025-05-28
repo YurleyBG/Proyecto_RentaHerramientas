@@ -219,6 +219,11 @@ public class HerramientaRepositoryImpl implements HerramientaService   {
         return herramientaRepository.findByCategoria_NombreIgnoreCase(category);
     }
 
+    @Override
+    public List<Herramienta> findHerramientasDisponibles() {
+        return herramientaRepository.findByInventario_StockGreaterThan(0);
+    }
+
     
 
 }

@@ -1,0 +1,2191 @@
+openapi: 3.0.0
+info:
+  title: API de Gestión de Alquileres y Entidades
+  description: API completa para la gestión de alquileres, devoluciones, entidades, herramientas, inventario, multas, pagos, reservas y usuarios.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/Api
+    description: Servidor de desarrollo local
+
+tags:
+  - name: Alquileres
+  - name: Devoluciones
+  - name: Entidades Generales
+  - name: Entregas
+  - name: Facturas
+  - name: Herramientas
+  - name: Inventario
+  - name: Multas
+  - name: Pagos
+  - name: Reservas
+  - name: Usuarios
+
+paths:
+  # --- AlquilerController ---
+  /alquiler:
+    get:
+      summary: Obtener todos los alquileres
+      description: Recupera una lista de todos los alquileres registrados.
+      tags:
+        - Alquileres
+      responses:
+        '200':
+          description: Lista de alquileres exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Alquiler' 
+              examples:
+                alquileresArray:
+                  value:
+                    - id: 1
+                      fechaAlquiler: "2024-05-28T10:00:00Z"
+                      estado: "Activo"
+                    - id: 2
+                      fechaAlquiler: "2024-05-29T11:00:00Z"
+                      estado: "Pendiente"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear un nuevo alquiler
+      description: Registra un nuevo alquiler en el sistema.
+      tags:
+        - Alquileres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerRequest'
+            example:
+              fechaInicio: "2024-06-01"
+              fechaFin: "2024-06-05"
+              idHerramienta: 123
+              idUsuario: 456
+      responses:
+        '200':
+          description: Alquiler creado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseAlquilar'
+              example:
+                success: true
+                message: "Alquiler creado exitosamente."
+                data:
+                  id: 1
+                  fechaAlquiler: "2024-05-28T10:00:00Z"
+                  estado: "Activo"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /alquiler/{id}:
+    delete:
+      summary: Eliminar un alquiler por ID
+      description: Elimina un alquiler específico del sistema.
+      tags:
+        - Alquileres
+      parameters:
+        - name: id
+          in: path
+          description: ID del alquiler a eliminar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Alquiler eliminado exitosamente.
+        '404':
+          description: Alquiler no encontrado.
+        '500':
+          description: Error interno del servidor.
+    patch:
+      summary: Actualizar un alquiler existente
+      description: Actualiza parcialmente la información de un alquiler específico.
+      tags:
+        - Alquileres
+      parameters:
+        - name: id
+          in: path
+          description: ID del alquiler a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlquilerRequest'
+            example:
+              fechaFin: "2024-06-07"
+      responses:
+        '200':
+          description: Alquiler actualizado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseAlquilar'
+              example:
+                success: true
+                message: "Alquiler actualizado exitosamente."
+                data:
+                  id: 1
+                  fechaAlquiler: "2024-05-28T10:00:00Z"
+                  estado: "Actualizado"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Alquiler no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  # --- DevolucionesController ---
+  /devoluciones:
+    get:
+      summary: Obtener todas las devoluciones
+      description: Recupera una lista de todas las devoluciones registradas.
+      tags:
+        - Devoluciones
+      responses:
+        '200':
+          description: Lista de devoluciones exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Devoluciones'
+              examples:
+                devolucionesArray:
+                  value:
+                    - id: 101
+                      fechaDevolucion: "2024-05-30T15:30:00Z"
+                      estado: "Completada"
+                    - id: 102
+                      fechaDevolucion: "2024-06-01T10:00:00Z"
+                      estado: "Pendiente"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva devolución
+      description: Registra una nueva devolución en el sistema.
+      tags:
+        - Devoluciones
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DevolucionesRequest'
+            example:
+              idAlquiler: 1
+              fechaDevolucion: "2024-05-30T15:30:00Z"
+      responses:
+        '200':
+          description: Devolución creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDevoluciones'
+              example:
+                success: true
+                message: "Devolución registrada."
+                data:
+                  id: 101
+                  fechaDevolucion: "2024-05-30T15:30:00Z"
+                  estado: "Completada"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+
+  # --- EntidadesGetController ---
+  /rol:
+    get:
+      summary: Obtener todos los roles
+      description: Recupera una lista de todos los roles disponibles en el sistema.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de roles exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rol'
+              examples:
+                rolesArray:
+                  value:
+                    - id: 1
+                      nombre: "ADMIN"
+                    - id: 2
+                      nombre: "USUARIO"
+        '500':
+          description: Error interno del servidor.
+  /categoria:
+    get:
+      summary: Obtener todas las categorías
+      description: Recupera una lista de todas las categorías disponibles.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de categorías exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Categoria'
+              examples:
+                categoriasArray:
+                  value:
+                    - id: 1
+                      nombre: "Herramientas Eléctricas"
+                    - id: 2
+                      nombre: "Plomería"
+        '500':
+          description: Error interno del servidor.
+  /localidad:
+    get:
+      summary: Obtener todas las localidades
+      description: Recupera una lista de todas las localidades geográficas.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de localidades exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Localidad'
+              examples:
+                localidadesArray:
+                  value:
+                    - id: 1
+                      nombre: "Bogotá"
+                      codigoPostal: "11001"
+        '500':
+          description: Error interno del servidor.
+  /DP:
+    get:
+      summary: Obtener todos los detalles de proveedor
+      description: Recupera una lista de los detalles de todos los proveedores.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de detalles de proveedor exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetalleProveedor'
+              examples:
+                detallesProveedorArray:
+                  value:
+                    - id: 1
+                      nombreEmpresa: "Ferremundo S.A."
+                    - id: 2
+                      nombreEmpresa: "ToolSupply Ltda."
+        '500':
+          description: Error interno del servidor.
+  /RP:
+    get:
+      summary: Obtener todos los reportes generales
+      description: Recupera una lista de todos los reportes generales.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de reportes generales exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReporteGeneral'
+              examples:
+                reportesArray:
+                  value:
+                    - id: 1
+                      tipoReporte: "Mensual"
+        '500':
+          description: Error interno del servidor.
+  /FP:
+    get:
+      summary: Obtener todas las formas de pago
+      description: Recupera una lista de todas las formas de pago.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de formas de pago exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FormaPago'
+              examples:
+                formasPagoArray:
+                  value:
+                    - id: 1
+                      nombre: "Efectivo"
+        '500':
+          description: Error interno del servidor.
+  /DF:
+    get:
+      summary: Obtener todos los detalles de factura
+      description: Recupera una lista de todos los detalles de factura.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de detalles de factura exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetalleFactura'
+              examples:
+                detallesFacturaArray:
+                  value:
+                    - id: 1
+                      descripcion: "Alquiler de taladro"
+        '500':
+          description: Error interno del servidor.
+  /Noti:
+    get:
+      summary: Obtener todas las notificaciones
+      description: Recupera una lista de todas las notificaciones.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de notificaciones exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notificaciones'
+              examples:
+                notificacionesArray:
+                  value:
+                    - id: 1
+                      mensaje: "Su alquiler vence mañana."
+        '500':
+          description: Error interno del servidor.
+  /estado:
+    get:
+      summary: Obtener todos los estados
+      description: Recupera una lista de todos los estados posibles en el sistema.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de estados exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Estado'
+              examples:
+                estadosArray:
+                  value:
+                    - id: 1
+                      nombre: "Activo"
+        '500':
+          description: Error interno del servidor.
+  /HM:
+    get:
+      summary: Obtener todas las herramientas de mantenimiento
+      description: Recupera una lista de todas las herramientas de mantenimiento.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de herramientas de mantenimiento exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HerramientaMantenimiento'
+              examples:
+                herramientasMantenimientoArray:
+                  value:
+                    - id: 1
+                      nombre: "Lubricante multiuso"
+        '500':
+          description: Error interno del servidor.
+  /DH:
+    get:
+      summary: Obtener todos los detalles de herramienta
+      description: Recupera una lista de todos los detalles de herramienta.
+      tags:
+        - Entidades Generales
+      responses:
+        '200':
+          description: Lista de detalles de herramienta exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetalleHerramienta'
+              examples:
+                detallesHerramientaArray:
+                  value:
+                    - id: 1
+                      estado: "Disponible"
+        '500':
+          description: Error interno del servidor.
+
+  # --- EntregaController ---
+  /entrega:
+    get:
+      summary: Obtener todas las entregas
+      description: Recupera una lista de todas las entregas registradas.
+      tags:
+        - Entregas
+      responses:
+        '200':
+          description: Lista de entregas exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Entrega'
+              examples:
+                entregasArray:
+                  value:
+                    - id: 1
+                      fechaEntrega: "2024-05-29T09:00:00Z"
+                      estado: "Entregado"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva entrega
+      description: Registra una nueva entrega en el sistema.
+      tags:
+        - Entregas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntregaRequest'
+            example:
+              idAlquiler: 1
+              fechaEntrega: "2024-05-29T09:00:00Z"
+      responses:
+        '200':
+          description: Entrega creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntrega'
+              example:
+                success: true
+                message: "Entrega procesada."
+                data:
+                  id: 1
+                  fechaEntrega: "2024-05-29T09:00:00Z"
+                  estado: "Entregado"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /entrega/{id}:
+    patch:
+      summary: Actualizar una entrega existente
+      description: Actualiza parcialmente la información de una entrega específica.
+      tags:
+        - Entregas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la entrega a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntregaRequest'
+            example:
+              fechaEntrega: "2024-05-30T09:00:00Z"
+      responses:
+        '200':
+          description: Entrega actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEntrega'
+              example:
+                success: true
+                message: "Entrega actualizada exitosamente."
+                data:
+                  id: 1
+                  fechaEntrega: "2024-05-30T09:00:00Z"
+                  estado: "Actualizado"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Entrega no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  # --- FacturaController ---
+  /factura:
+    get:
+      summary: Obtener todas las facturas
+      description: Recupera una lista de todas las facturas registradas.
+      tags:
+        - Facturas
+      responses:
+        '200':
+          description: Lista de facturas exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Factura'
+              examples:
+                facturasArray:
+                  value:
+                    - id: 1
+                      numeroFactura: "FAC-2024-0001"
+                    - id: 2
+                      numeroFactura: "FAC-2024-0002"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva factura
+      description: Crea una nueva factura en el sistema.
+      tags:
+        - Facturas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FacturaRequest'
+            example:
+              numeroFactura: "FAC-2024-0003"
+              fechaFactura: "2024-05-29"
+              total: 150.00
+              # Otros campos necesarios para crear una factura
+      responses:
+        '200':
+          description: Factura creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseFactura' 
+              example:
+                success: true
+                message: "Factura creada exitosamente."
+                data:
+                  id: 3
+                  numeroFactura: "FAC-2024-0003"
+                  fechaFactura: "2024-05-29"
+                  total: 150.00
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /factura/{id}:
+    delete:
+      summary: Eliminar una factura por ID
+      description: Elimina una factura específica del sistema.
+      tags:
+        - Facturas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la factura a eliminar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Factura eliminada exitosamente.
+        '404':
+          description: Factura no encontrada.
+        '500':
+          description: Error interno del servidor.
+    patch:
+      summary: Actualizar una factura existente
+      description: Actualiza parcialmente la información de una factura específica.
+      tags:
+        - Facturas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la factura a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FacturaRequest' 
+            example:
+              total: 175.50
+      responses:
+        '200':
+          description: Factura actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseFactura' 
+              example:
+                success: true
+                message: "Factura actualizada exitosamente."
+                data:
+                  id: 1
+                  numeroFactura: "FAC-2024-0001"
+                  fechaFactura: "2024-05-28"
+                  total: 175.50
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Factura no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  # --- HerramientaController ---
+  /herramienta:
+    get:
+      summary: Obtener todas las herramientas o filtrar por búsqueda/categoría
+      description: |
+        Recupera una lista de todas las herramientas. Permite filtrar por un término de búsqueda (`search`)
+        o por categoría (`category`). Si ambos están presentes, se prioriza la búsqueda por término.
+      tags:
+        - Herramientas
+      parameters:
+        - name: search
+          in: query
+          description: Término de búsqueda para herramientas.
+          required: false
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Categoría de las herramientas (ej. "Electricidad", "Fontanería"). Usa "Todas" para ignorar el filtro.
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de herramientas exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Herramienta'
+              examples:
+                herramientasArray:
+                  value:
+                    - id: 1
+                      nombre: "Taladro percutor"
+                    - id: 2
+                      nombre: "Sierra caladora"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva herramienta
+      description: Registra una nueva herramienta en el sistema.
+      tags:
+        - Herramientas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HerramientaRequest'
+            example:
+              nombre: "Martillo demoledor"
+              descripcion: "Martillo eléctrico para trabajos pesados."
+              categoria: "Construcción"
+              precioAlquilerDia: 45.00
+      responses:
+        '200':
+          description: Herramienta creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseHerramientas'
+              example:
+                success: true
+                message: "Herramienta creada/actualizada."
+                data:
+                  id: 1
+                  nombre: "Martillo demoledor"
+                  categoria: "Construcción"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /herramienta/{id}:
+    get:
+      summary: Obtener una herramienta por ID
+      description: Recupera una herramienta específica por su ID.
+      tags:
+        - Herramientas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la herramienta a obtener.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Herramienta encontrada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Herramienta'
+              example:
+                id: 1
+                nombre: "Taladro percutor"
+                descripcion: "Taladro eléctrico de alta potencia."
+                categoria: "Herramientas Eléctricas"
+                precioAlquilerDia: 25.00
+                disponible: true
+        '404':
+          description: Herramienta no encontrada.
+        '500':
+          description: Error interno del servidor.
+    delete:
+      summary: Eliminar una herramienta por ID
+      description: Elimina una herramienta específica del sistema.
+      tags:
+        - Herramientas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la herramienta a eliminar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Herramienta eliminada exitosamente.
+        '404':
+          description: Herramienta no encontrada.
+        '500':
+          description: Error interno del servidor.
+    patch:
+      summary: Actualizar una herramienta existente
+      description: Actualiza parcialmente la información de una herramienta específica.
+      tags:
+        - Herramientas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la herramienta a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HerramientaRequest'
+            example:
+              precioAlquilerDia: 30.00
+      responses:
+        '200':
+          description: Herramienta actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseHerramientas'
+              example:
+                success: true
+                message: "Herramienta actualizada exitosamente."
+                data:
+                  id: 1
+                  nombre: "Taladro percutor"
+                  categoria: "Herramientas Eléctricas"
+                  precioAlquilerDia: 30.00
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Herramienta no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  # --- InventarioController ---
+  /inventario:
+    get:
+      summary: Obtener todo el inventario
+      description: Recupera una lista de todos los elementos en el inventario.
+      tags:
+        - Inventario
+      responses:
+        '200':
+          description: Lista de inventario exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Inventario'
+              examples:
+                inventarioArray:
+                  value:
+                    - id: 1
+                      cantidadDisponible: 10
+                    - id: 2
+                      cantidadDisponible: 5
+        '500':
+          description: Error interno del servidor.
+  /inventario/{id}:
+    patch:
+      summary: Actualizar un elemento del inventario
+      description: Actualiza parcialmente la información de un elemento específico del inventario.
+      tags:
+        - Inventario
+      parameters:
+        - name: id
+          in: path
+          description: ID del elemento del inventario a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventarioRequest'
+            example:
+              cantidad: 8
+      responses:
+        '200':
+          description: Elemento del inventario actualizado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseInventario'
+              example:
+                success: true
+                message: "Inventario actualizado."
+                data:
+                  id: 1
+                  cantidadDisponible: 8
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Elemento del inventario no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  # --- MultaController ---
+  /multa:
+    get:
+      summary: Obtener todas las multas
+      description: Recupera una lista de todas las multas registradas.
+      tags:
+        - Multas
+      responses:
+        '200':
+          description: Lista de multas exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Multas'
+              examples:
+                multasArray:
+                  value:
+                    - id: 1
+                      monto: 50.00
+                    - id: 2
+                      monto: 25.00
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva multa
+      description: Registra una nueva multa en el sistema.
+      tags:
+        - Multas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultaRequest'
+            example:
+              idAlquiler: 2
+              monto: 30.00
+              razon: "Entrega tardía"
+      responses:
+        '200':
+          description: Multa creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMulta'
+              example:
+                success: true
+                message: "Multa registrada/actualizada."
+                data:
+                  id: 1
+                  monto: 50.00
+                  razon: "Daño menor a la herramienta"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /multa/{id}:
+    patch:
+      summary: Actualizar una multa existente
+      description: Actualiza parcialmente la información de una multa específica.
+      tags:
+        - Multas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la multa a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultaRequest'
+            example:
+              monto: 60.00
+      responses:
+        '200':
+          description: Multa actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseMulta'
+              example:
+                success: true
+                message: "Multa actualizada exitosamente."
+                data:
+                  id: 1
+                  monto: 60.00
+                  razon: "Daño menor a la herramienta"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Multa no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  # --- PagoController ---
+  /pago:
+    get:
+      summary: Obtener todos los pagos
+      description: Recupera una lista de todos los pagos registrados.
+      tags:
+        - Pagos
+      responses:
+        '200':
+          description: Lista de pagos exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pago'
+              examples:
+                pagosArray:
+                  value:
+                    - id: 1
+                      monto: 75.00
+                    - id: 2
+                      monto: 120.00
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear un nuevo pago
+      description: Registra un nuevo pago en el sistema.
+      tags:
+        - Pagos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PagoRequest'
+            example:
+              idAlquiler: 3
+              monto: 90.00
+              metodo: "Transferencia"
+      responses:
+        '200':
+          description: Pago creado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePago'
+              example:
+                success: true
+                message: "Pago procesado/actualizado."
+                data:
+                  id: 1
+                  monto: 75.00
+                  fechaPago: "2024-05-28"
+                  metodo: "Tarjeta Crédito"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /pago/{id}:
+    patch:
+      summary: Actualizar un pago existente
+      description: Actualiza parcialmente la información de un pago específico.
+      tags:
+        - Pagos
+      parameters:
+        - name: id
+          in: path
+          description: ID del pago a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PagoRequest'
+            example:
+              monto: 80.00
+      responses:
+        '200':
+          description: Pago actualizado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponsePago'
+              example:
+                success: true
+                message: "Pago actualizado exitosamente."
+                data:
+                  id: 1
+                  monto: 80.00
+                  fechaPago: "2024-05-28"
+                  metodo: "Tarjeta Crédito"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Pago no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  # --- ReservaController ---
+  /reserva:
+    get:
+      summary: Obtener todas las reservas
+      description: Recupera una lista de todas las reservas registradas.
+      tags:
+        - Reservas
+      responses:
+        '200':
+          description: Lista de reservas exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reserva'
+              examples:
+                reservasArray:
+                  value:
+                    - id: 1
+                      fechaInicio: "2024-06-01"
+                      fechaFin: "2024-06-05"
+                    - id: 2
+                      fechaInicio: "2024-06-10"
+                      fechaFin: "2024-06-12"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear una nueva reserva
+      description: Registra una nueva reserva en el sistema.
+      tags:
+        - Reservas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReserveRequest'
+            example:
+              idUsuario: 456
+              idHerramienta: 789
+              fechaInicio: "2024-07-01"
+              fechaFin: "2024-07-05"
+      responses:
+        '200':
+          description: Reserva creada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseReserve'
+              example:
+                success: true
+                message: "Reserva creada/actualizada."
+                data:
+                  id: 1
+                  fechaInicio: "2024-06-01"
+                  fechaFin: "2024-06-05"
+                  estado: "Confirmada"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /reserva/{id}:
+    patch:
+      summary: Actualizar una reserva existente
+      description: Actualiza parcialmente la información de una reserva específica.
+      tags:
+        - Reservas
+      parameters:
+        - name: id
+          in: path
+          description: ID de la reserva a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReserveRequest'
+            example:
+              fechaFin: "2024-07-07"
+      responses:
+        '200':
+          description: Reserva actualizada exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseReserve'
+              example:
+                success: true
+                message: "Reserva actualizada exitosamente."
+                data:
+                  id: 1
+                  fechaInicio: "2024-06-01"
+                  fechaFin: "2024-07-07"
+                  estado: "Actualizada"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Reserva no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  # --- UsuarioController ---
+  /usuario:
+    get:
+      summary: Obtener todos los usuarios
+      description: Recupera una lista de todos los usuarios registrados.
+      tags:
+        - Usuarios
+      responses:
+        '200':
+          description: Lista de usuarios exitosa.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario' 
+              examples:
+                usuariosArray:
+                  value:
+                    - id: 1
+                      nombreUsuario: "jperez"
+                      email: "juan.perez@example.com"
+                    - id: 2
+                      nombreUsuario: "mgarcia"
+                      email: "maria.garcia@example.com"
+        '500':
+          description: Error interno del servidor.
+    post:
+      summary: Crear un nuevo usuario
+      description: Registra un nuevo usuario en el sistema.
+      tags:
+        - Usuarios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioRequest' 
+            example:
+              nombreUsuario: "nuevo_usuario"
+              email: "nuevo.usuario@example.com"
+              password: "MiContrasenaSegura123"
+              nombreCompleto: "Nuevo Usuario Demo"
+      responses:
+        '200':
+          description: Usuario creado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUsuario' 
+              example:
+                success: true
+                message: "Usuario creado exitosamente."
+                data:
+                  id: 1
+                  nombreUsuario: "nuevo_usuario"
+                  email: "nuevo.usuario@example.com"
+                  rol: "USUARIO"
+        '400':
+          description: Solicitud inválida.
+        '500':
+          description: Error interno del servidor.
+  /usuario/{id}:
+    delete:
+      summary: Eliminar un usuario por ID
+      description: Elimina un usuario específico del sistema.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          description: ID del usuario a eliminar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Usuario eliminado exitosamente.
+        '404':
+          description: Usuario no encontrado.
+        '500':
+          description: Error interno del servidor.
+    patch:
+      summary: Actualizar un usuario existente
+      description: Actualiza parcialmente la información de un usuario específico.
+      tags:
+        - Usuarios
+      parameters:
+        - name: id
+          in: path
+          description: ID del usuario a actualizar.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioRequest' 
+            example:
+              email: "otro.email@example.com"
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseUsuario' 
+              example:
+                success: true
+                message: "Usuario actualizado exitosamente."
+                data:
+                  id: 1
+                  nombreUsuario: "jperez"
+                  email: "otro.email@example.com"
+                  rol: "USUARIO"
+        '400':
+          description: Solicitud inválida.
+        '404':
+          description: Usuario no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+components:
+  schemas:
+
+    Alquiler:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del alquiler.
+          example: 1
+        fechaAlquiler:
+          type: string
+          format: date-time
+          description: Fecha y hora del alquiler.
+          example: "2024-05-28T10:00:00Z"
+        estado:
+          type: string
+          description: Estado actual del alquiler.
+          example: "Activo"
+      example:
+        id: 1
+        fechaAlquiler: "2024-05-28T10:00:00Z"
+        estado: "Activo"
+
+    Devoluciones:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la devolución.
+          example: 101
+        fechaDevolucion:
+          type: string
+          format: date-time
+          description: Fecha y hora de la devolución.
+          example: "2024-05-30T15:30:00Z"
+        estado:
+          type: string
+          description: Estado de la devolución.
+          example: "Completada"
+      example:
+        id: 101
+        fechaDevolucion: "2024-05-30T15:30:00Z"
+        estado: "Completada"
+
+    Rol:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del rol.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre del rol (ej. ADMIN, USUARIO).
+          example: "ADMIN"
+      example:
+        id: 1
+        nombre: "ADMIN"
+
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la categoría.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la categoría (ej. Herramientas Eléctricas).
+          example: "Herramientas Eléctricas"
+      example:
+        id: 1
+        nombre: "Herramientas Eléctricas"
+
+    Localidad:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la localidad.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la localidad.
+          example: "Bogotá"
+        codigoPostal:
+          type: string
+          description: Código postal de la localidad.
+          example: "11001"
+      example:
+        id: 1
+        nombre: "Bogotá"
+        codigoPostal: "11001"
+
+    DetalleProveedor:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del detalle de proveedor.
+          example: 1
+        nombreEmpresa:
+          type: string
+          description: Nombre de la empresa proveedora.
+          example: "Ferremundo S.A."
+        contacto:
+          type: string
+          description: Nombre del contacto del proveedor.
+          example: "Ana López"
+      example:
+        id: 1
+        nombreEmpresa: "Ferremundo S.A."
+        contacto: "Ana López"
+
+    ReporteGeneral:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del reporte general.
+          example: 1
+        tipoReporte:
+          type: string
+          description: Tipo de reporte (ej. "Mensual", "Anual").
+          example: "Mensual"
+        fechaGeneracion:
+          type: string
+          format: date
+          description: Fecha de generación del reporte.
+          example: "2024-05-01"
+      example:
+        id: 1
+        tipoReporte: "Mensual"
+        fechaGeneracion: "2024-05-01"
+
+    FormaPago:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la forma de pago.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la forma de pago (ej. "Efectivo", "Tarjeta Crédito").
+          example: "Efectivo"
+      example:
+        id: 1
+        nombre: "Efectivo"
+
+    DetalleFactura:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del detalle de factura.
+          example: 1
+        descripcion:
+          type: string
+          description: Descripción del ítem en la factura.
+          example: "Alquiler de taladro"
+        cantidad:
+          type: integer
+          example: 1
+        precioUnitario:
+          type: number
+          format: float
+          example: 25.50
+      example:
+        id: 1
+        descripcion: "Alquiler de taladro"
+        cantidad: 1
+        precioUnitario: 25.50
+
+    Notificaciones:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la notificación.
+          example: 1
+        mensaje:
+          type: string
+          description: Contenido de la notificación.
+          example: "Su alquiler vence mañana."
+        fechaEnvio:
+          type: string
+          format: date-time
+          description: Fecha y hora de envío de la notificación.
+          example: "2024-05-27T08:00:00Z"
+      example:
+        id: 1
+        mensaje: "Su alquiler vence mañana."
+        fechaEnvio: "2024-05-27T08:00:00Z"
+
+    Estado:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del estado.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre del estado (ej. "Activo", "Inactivo", "Pendiente").
+          example: "Activo"
+      example:
+        id: 1
+        nombre: "Activo"
+
+    HerramientaMantenimiento:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la herramienta de mantenimiento.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la herramienta de mantenimiento.
+          example: "Lubricante multiuso"
+        ultimaFechaMantenimiento:
+          type: string
+          format: date
+          description: Última fecha de mantenimiento.
+          example: "2024-04-15"
+      example:
+        id: 1
+        nombre: "Lubricante multiuso"
+        ultimaFechaMantenimiento: "2024-04-15"
+
+    DetalleHerramienta:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del detalle de herramienta.
+          example: 1
+        estado:
+          type: string
+          description: Estado de la herramienta (ej. "Disponible", "En Mantenimiento").
+          example: "Disponible"
+        ubicacion:
+          type: string
+          description: Ubicación de la herramienta.
+          example: "Almacén A"
+      example:
+        id: 1
+        estado: "Disponible"
+        ubicacion: "Almacén A"
+
+    Entrega:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la entrega.
+          example: 1
+        fechaEntrega:
+          type: string
+          format: date-time
+          description: Fecha y hora de la entrega.
+          example: "2024-05-29T09:00:00Z"
+        estado:
+          type: string
+          description: Estado de la entrega.
+          example: "Entregado"
+      example:
+        id: 1
+        fechaEntrega: "2024-05-29T09:00:00Z"
+        estado: "Entregado"
+
+    Factura:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la factura.
+          example: 1
+        numeroFactura:
+          type: string
+          description: Número de la factura.
+          example: "FAC-2024-0001"
+        fechaFactura:
+          type: string
+          format: date
+          description: Fecha de emisión de la factura.
+          example: "2024-05-28"
+        total:
+          type: number
+          format: float
+          description: Monto total de la factura.
+          example: 125.75
+      example:
+        id: 1
+        numeroFactura: "FAC-2024-0001"
+        fechaFactura: "2024-05-28"
+        total: 125.75
+
+    Herramienta:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la herramienta.
+          example: 1
+        nombre:
+          type: string
+          description: Nombre de la herramienta.
+          example: "Taladro percutor"
+        descripcion:
+          type: string
+          description: Descripción de la herramienta.
+          example: "Taladro eléctrico de alta potencia."
+        categoria:
+          type: string
+          description: Categoría de la herramienta.
+          example: "Herramientas Eléctricas"
+        precioAlquilerDia:
+          type: number
+          format: float
+          description: Precio de alquiler por día.
+          example: 25.00
+        disponible:
+          type: boolean
+          description: Indica si la herramienta está disponible.
+          example: true
+      example:
+        id: 1
+        nombre: "Taladro percutor"
+        descripcion: "Taladro eléctrico de alta potencia."
+        categoria: "Herramientas Eléctricas"
+        precioAlquilerDia: 25.00
+        disponible: true
+
+    Inventario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del registro de inventario.
+          example: 1
+        cantidadDisponible:
+          type: integer
+          description: Cantidad de ítems disponibles en inventario.
+          example: 10
+        ubicacion:
+          type: string
+          description: Ubicación de la herramienta en el inventario.
+          example: "Almacén Principal"
+      example:
+        id: 1
+        cantidadDisponible: 10
+        ubicacion: "Almacén Principal"
+
+    Multas:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la multa.
+          example: 1
+        monto:
+          type: number
+          format: float
+          description: Monto de la multa.
+          example: 50.00
+        fechaMulta:
+          type: string
+          format: date
+          description: Fecha en que se aplicó la multa.
+          example: "2024-05-25"
+        razon:
+          type: string
+          description: Razón de la multa.
+          example: "Entrega tardía"
+      example:
+        id: 1
+        monto: 50.00
+        fechaMulta: "2024-05-25"
+        razon: "Entrega tardía"
+
+    Pago:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del pago.
+          example: 1
+        monto:
+          type: number
+          format: float
+          description: Monto del pago.
+          example: 75.00
+        fechaPago:
+          type: string
+          format: date
+          description: Fecha en que se realizó el pago.
+          example: "2024-05-28"
+        metodo:
+          type: string
+          description: Método de pago.
+          example: "Tarjeta Crédito"
+      example:
+        id: 1
+        monto: 75.00
+        fechaPago: "2024-05-28"
+        metodo: "Tarjeta Crédito"
+
+    Reserva:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único de la reserva.
+          example: 1
+        fechaInicio:
+          type: string
+          format: date
+          description: Fecha de inicio de la reserva.
+          example: "2024-06-01"
+        fechaFin:
+          type: string
+          format: date
+          description: Fecha de fin de la reserva.
+          example: "2024-06-05"
+        estado:
+          type: string
+          description: Estado de la reserva.
+          example: "Confirmada"
+      example:
+        id: 1
+        fechaInicio: "2024-06-01"
+        fechaFin: "2024-06-05"
+        estado: "Confirmada"
+
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID único del usuario.
+          example: 1
+        nombreUsuario:
+          type: string
+          description: Nombre de usuario.
+          example: "jperez"
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del usuario.
+          example: "juan.perez@example.com"
+        rol:
+          type: string
+          description: Rol del usuario.
+          example: "USUARIO"
+      example:
+        id: 1
+        nombreUsuario: "jperez"
+        email: "juan.perez@example.com"
+        rol: "USUARIO"
+
+    # --- Modelos de Request (para POST y PATCH) ---
+    AlquilerRequest:
+      type: object
+      required:
+        - fechaInicio
+        - fechaFin
+        - idHerramienta
+        - idUsuario
+      properties:
+        fechaInicio:
+          type: string
+          format: date
+          description: Fecha de inicio del alquiler.
+          example: "2024-06-01"
+        fechaFin:
+          type: string
+          format: date
+          description: Fecha de fin del alquiler.
+          example: "2024-06-05"
+        idHerramienta:
+          type: integer
+          format: int64
+          description: ID de la herramienta a alquilar.
+          example: 123
+        idUsuario:
+          type: integer
+          format: int64
+          description: ID del usuario que alquila.
+          example: 456
+
+    DevolucionesRequest:
+      type: object
+      required:
+        - idAlquiler
+        - fechaDevolucion
+      properties:
+        idAlquiler:
+          type: integer
+          format: int64
+          description: ID del alquiler asociado a la devolución.
+          example: 1
+        fechaDevolucion:
+          type: string
+          format: date-time
+          description: Fecha y hora real de la devolución.
+          example: "2024-05-30T15:30:00Z"
+          
+
+    EntregaRequest:
+      type: object
+      required:
+        - idAlquiler
+        - fechaEntrega
+      properties:
+        idAlquiler:
+          type: integer
+          format: int64
+          description: ID del alquiler asociado a la entrega.
+          example: 1
+        fechaEntrega:
+          type: string
+          format: date-time
+          description: Fecha y hora real de la entrega.
+          example: "2024-05-29T09:00:00Z"
+
+    FacturaRequest:
+      type: object
+      required:
+        - numeroFactura
+        - fechaFactura
+        - total
+      
+      properties:
+        numeroFactura:
+          type: string
+          description: Número de la factura.
+          example: "FAC-2024-0003"
+        fechaFactura:
+          type: string
+          format: date
+          description: Fecha de emisión de la factura.
+          example: "2024-05-29"
+        total:
+          type: number
+          format: float
+          description: Monto total de la factura.
+          example: 150.00
+  
+    HerramientaRequest:
+      type: object
+      required:
+        - nombre
+        - categoria
+        - precioAlquilerDia
+      properties:
+        nombre:
+          type: string
+          description: Nombre de la herramienta.
+          example: "Martillo demoledor"
+        descripcion:
+          type: string
+          description: Descripción de la herramienta.
+          example: "Martillo eléctrico para trabajos pesados."
+        categoria:
+          type: string
+          description: Categoría a la que pertenece la herramienta.
+          example: "Construcción"
+        precioAlquilerDia:
+          type: number
+          format: float
+          description: Precio de alquiler por día.
+          example: 45.00
+
+    InventarioRequest:
+      type: object
+      required:
+        - idHerramienta
+        - cantidad
+      properties:
+        idHerramienta:
+          type: integer
+          format: int64
+          description: ID de la herramienta en inventario.
+          example: 123
+        cantidad:
+          type: integer
+          description: Cantidad de esta herramienta.
+          example: 5
+        ubicacion:
+          type: string
+          description: Ubicación de la herramienta en el inventario.
+          example: "Almacén B"
+
+    MultaRequest:
+      type: object
+      required:
+        - idAlquiler
+        - monto
+        - razon
+      properties:
+        idAlquiler:
+          type: integer
+          format: int64
+          description: ID del alquiler al que se aplica la multa.
+          example: 1
+        monto:
+          type: number
+          format: float
+          description: Monto de la multa.
+          example: 75.00
+        razon:
+          type: string
+          description: Razón de la multa.
+          example: "Daño menor a la herramienta"
+
+    PagoRequest:
+      type: object
+      required:
+        - idAlquiler
+        - monto
+        - metodo
+      properties:
+        idAlquiler:
+          type: integer
+          format: int64
+          description: ID del alquiler al que corresponde el pago.
+          example: 1
+        monto:
+          type: number
+          format: float
+          description: Monto del pago.
+          example: 120.00
+        metodo:
+          type: string
+          description: Método de pago (ej. "Efectivo", "Tarjeta").
+          example: "Tarjeta"
+
+    ReserveRequest:
+      type: object
+      required:
+        - idUsuario
+        - idHerramienta
+        - fechaInicio
+        - fechaFin
+      properties:
+        idUsuario:
+          type: integer
+          format: int64
+          description: ID del usuario que realiza la reserva.
+          example: 456
+        idHerramienta:
+          type: integer
+          format: int64
+          description: ID de la herramienta a reservar.
+          example: 789
+        fechaInicio:
+          type: string
+          format: date
+          description: Fecha de inicio de la reserva.
+          example: "2024-07-01"
+        fechaFin:
+          type: string
+          format: date
+          description: Fecha de fin de la reserva.
+          example: "2024-07-05"
+
+    UsuarioRequest:
+      type: object
+      required:
+        - nombreUsuario
+        - email
+        - password
+      properties:
+        nombreUsuario:
+          type: string
+          description: Nombre de usuario.
+          example: "nuevo_usuario"
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del usuario.
+          example: "nuevo.usuario@example.com"
+        password:
+          type: string
+          format: password
+          description: Contraseña del usuario.
+          example: "MiContrasenaSegura123"
+        nombreCompleto:
+          type: string
+          description: Nombre completo del usuario.
+          example: "Nuevo Usuario Demo"
+
+
+    # --- Modelos de Response (retornados por POST y PATCH) ---
+    ResponseAlquilar:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indica si la operación fue exitosa.
+          example: true
+        message:
+          type: string
+          description: Mensaje descriptivo del resultado.
+          example: "Alquiler creado exitosamente."
+        data:
+          $ref: '#/components/schemas/Alquiler'
+
+    ResponseDevoluciones:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Devolución registrada."
+        data:
+          $ref: '#/components/schemas/Devoluciones'
+
+    ResponseEntrega:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Entrega procesada."
+        data:
+          $ref: '#/components/schemas/Entrega'
+
+    ResponseFactura:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Factura creada/actualizada."
+        data:
+          $ref: '#/components/schemas/Factura'
+
+    ResponseHerramientas:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Herramienta creada/actualizada."
+        data:
+          $ref: '#/components/schemas/Herramienta'
+
+    ResponseInventario:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Inventario actualizado."
+        data:
+          $ref: '#/components/schemas/Inventario'
+
+    ResponseMulta:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Multa registrada/actualizada."
+        data:
+          $ref: '#/components/schemas/Multas'
+
+    ResponsePago:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Pago procesado/actualizado."
+        data:
+          $ref: '#/components/schemas/Pago'
+
+    ResponseReserve:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Reserva creada/actualizada."
+        data:
+          $ref: '#/components/schemas/Reserva'
+    ResponseUsuario:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Usuario creado/actualizado."
+        data:
+          $ref: '#/components/schemas/Usuario'

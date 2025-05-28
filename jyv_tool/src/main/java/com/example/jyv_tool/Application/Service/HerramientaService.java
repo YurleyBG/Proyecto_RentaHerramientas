@@ -16,5 +16,6 @@ public interface HerramientaService {
     List<Herramienta> searchHerramientas(String search);
     Herramienta findHerramientaById(Long id);
     List<Herramienta> findHerramientasByCategoria(String category);
+    List<Herramienta>findHerramientasDisponibles();
 
 }
