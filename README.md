@@ -298,7 +298,7 @@ http://localhost:8080/Api/reserva
 
 [Ir al sitio ](https://www.notion.so/JYV_TOOLS-1fec7817025d80d589f6c1e6ae54a35e?pvs=4)
 
-## Proyecto desarrolado por 
+## Proyecto desarrollado por 
   + Yurley Botello
   + Valentina Molina
   + Jhonatan Omaña
